@@ -16,18 +16,26 @@ body{
 
 
 header {
-    height: 15vh;
+    height: 10vh;
     width: 100vw;
 }
 
-nav {
-    height: 6vh;
-    width: 100vw;
+ul {
+  list-style-type: none;
+  overflow: hidden;
+  background-color: #62ffbe;
 }
 
-main {
-    height: 100vh;
-    width: 100vw;
+ul li {
+  float: inline-start;
+}
+
+ul li a {
+  display: block;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 0.85em 1em;
+  text-decoration: none;
 }
 
 footer {
@@ -37,3 +45,4 @@ footer {
     font-size: 1.125em;
     color: #f7f7f7;
 }
+
