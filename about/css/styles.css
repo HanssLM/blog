@@ -18,7 +18,7 @@ header {
     width: 100vw;
 }
 
-.navbar {
+.barra-nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -26,11 +26,11 @@ header {
     background-color: #62ffbe;
 }
 
-.navbar li {
+.barra-nav li {
     float: left;
 }
 
-.navbar li a {
+.barra-nav li a {
     display: block;
     color: rgb(0, 0, 0);
     text-align: center;
@@ -43,12 +43,12 @@ main {
     padding: 1.25em;
 }
 
-.grup {
+.equip {
     display: flex;
     gap: 2em;
 }
 
-.membre {
+.persona {
     flex: 1;
 }
 

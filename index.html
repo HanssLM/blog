@@ -1,35 +1,47 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="ca">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Blog: Fran i Hans</title>
-  <meta name="description" content="Plantilla HTML v1.0" />
-  <meta name="author" content="Hans Lao Moncusi" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="./css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Blog de Hardware</title>
+    <meta name="description" content="Blog dedicat a les últimes novetats en hardware i tecnologia.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
-
 <body>
-  <header>
-    <h2>Blog: Fran i Hans</h2>
-  </header>
-  <nav>
-    <ul>
-      <li><a href="./posts/posts.html">Posts</a></li>
-      <li><a href="./about/about.html">About</a></li>
-      <li><a href="./contact/contact.html">Contact</a></li>
-      <li><a href="./login/login.html">Login</a></li>
-      <li><a href="./register/register.html">Register</a></li>
-    </ul>
-  </nav>
-  <main>
-    <h4>Aquesta sera la pagina principal del nostre blog</h4>
-  </main>
-  <footer>
-    &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi i Fran Chamizo Dominguez
-  </footer>
-</body>
+    <header>
+        <h1>Ultimes tecnologies de Hardware</h1>
+    </header>
+    <nav>
+        <ul class="barra-nav">
+            <li><a href="index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
+            <li><a href="posts/posts.html"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
+            <li><a href="about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre Nosaltres</a></li>
+            <li><a href="contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contacte</a></li>
+            <li><a href="login/login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Accedir</a></li>
+            <li><a href="register/register.html"><i class="fas fa-user-plus"></i>&nbsp;Registre</a></li>
+        </ul>
+    </nav>
+    <main class="principal">
+        <p>Benvinguts al nostre blog sobre hardware. Aquí trobareu anàlisis de components, guies de muntatge i les últimes novetats del sector.</p>
+        
+        <div class="banner">
+            <img src="https://phoenixnap.com/glossary/wp-content/uploads/2022/09/what-is-hardware.jpg" alt="img1">
+        </div>
 
+        <h2>Últimes Entrades</h2>
+        <div class="resum-article">
+            <h3>Noves GPUs: Potència sense precedents</h3>
+            <p>Analitzem les noves targetes gràfiques que han arribat al mercat i et diem si val la pena la inversió... <a href="posts/posts.html#post-gpu">Llegir més</a></p>
+        </div>
+        <div class="resum-article">
+            <h3>Guia de Muntatge de PC per a Principiants</h3>
+            <p>T'expliquem pas a pas com muntar el teu propi ordinador des de zero, evitant els errors més comuns... <a href="posts/posts.html#post-muntatge">Llegir més</a></p>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 Educem SMX 1A · Pàgina creada per Hans Lao Moncusi, Fran Chamizo Domínguez i Unax Maya Rodríguez
+    </footer>
+</body>
 </html>
