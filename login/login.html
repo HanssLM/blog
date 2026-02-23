@@ -14,22 +14,44 @@
 
 <body>
     <header>
-        <h1>LOGIN</h1>
-        <h3>PAGINA WEB EN CONSTRUCCIO</h3>
+        <h1>Ultimes tecnologies de Hardware</h1>
     </header>
     <nav>
-        <ul>
-            <li><a href="./../index.html">Home</a></li>
-            <li><a href="./../posts/posts.html">Posts</a></li>
-            <li><a href="./../about/about.html">About</a></li>
-            <li><a href="./../contact/contact.html">Contact</a></li>
-            <li><a href="./../register/register.html">Register</a></li>
+        <ul class="barra-nav">
+            <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
+            <li><a href="./../posts/posts.html"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
+            <li><a href="./../about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre Nosaltres</a></li>
+            <li><a href="./../contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contacte</a></li>
+            <li><a href="./login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Accedir</a></li>
+            <li><a href="./../register/register.html"><i class="fas fa-user-plus"></i>&nbsp;Registre</a></li>
         </ul>
     </nav>
-    <main>
-        <h1>DISPONIBLE PROXIMAMENT</h1>
-        <img src="../img/UnderConstruction.jpg" alt="Under Construction">
+
+    <main class="pagina-login">
+        <section class="zona-login" aria-label="Inicio de sesión">
+            <div class="tarjeta-login">
+                <h2 class="titulo-login">Iniciar sesión</h2>
+
+                <div class="redes" aria-label="Acceso social">
+                    <a href="#" class="boton-red" aria-label="Continuar con Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="#" class="boton-red" aria-label="Continuar con Google"><i class="fab fa-google" aria-hidden="true"></i></a>
+                    <a href="#" class="boton-red" aria-label="Continuar con LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                </div>
+
+                <p class="texto-cuenta">O usa tu cuenta</p>
+
+                <form class="formulario-login" action="#" method="post" novalidate>
+                    <input class="campo" type="email" name="email" autocomplete="email" placeholder="Email" required>
+                    <input class="campo" type="password" name="password" autocomplete="current-password" placeholder="Contraseña" minlength="6" required>
+                    <a class="enlace" href="#">¿Olvidaste tu contraseña?</a>
+                    <button class="boton-principal" type="submit">Entrar</button>
+                </form>
+
+                <a class="enlace-crear" href="./../register/register.html">Crear cuenta</a>
+            </div>
+        </section>
     </main>
+
     <footer>
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi, Fran Chamizo Dominguez i Unax Maya Rodríguez
     </footer>

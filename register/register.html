@@ -9,25 +9,52 @@
     <meta name="author" content="Hans Lao Moncusi">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
     <header>
-        <h1>REGISTER</h1>
-        <h3>PAGINA WEB EN CONSTRUCCIO</h3>
+        <h1>Ultimes tecnologies de Hardware</h1>
     </header>
     <nav>
-        <ul>
-            <li><a href="./../index.html">Home</a></li>
-            <li><a href="./../posts/posts.html">Posts</a></li>
-            <li><a href="./../about/about.html">About</a></li>
-            <li><a href="./../contact/contact.html">Contact</a></li>
-            <li><a href="./../login/login.html">Login</a></li>
+        <ul class="barra-nav">
+            <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
+            <li><a href="./../posts/posts.html"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
+            <li><a href="./../about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre Nosaltres</a></li>
+            <li><a href="./../contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contacte</a></li>
+            <li><a href="./../login/login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Accedir</a></li>
+            <li><a href="./register.html"><i class="fas fa-user-plus"></i>&nbsp;Registre</a></li>
         </ul>
     </nav>
-    <main>
-        <h1>DISPONIBLE PROXIMAMENT</h1>
-        <img src="../img/UnderConstruction.jpg" alt="Under Construction">
+    <main class="pagina-register">
+        <section class="zona-register" aria-label="Crear cuenta">
+            <div class="tarjeta-register">
+                <h2 class="titulo-register">Crear cuenta</h2>
+                <p class="texto-cuenta">Completa el formulario para registrarte</p>
+
+                <form class="formulario-register" action="#" method="post" novalidate>
+                    <input class="campo" type="text" name="nombre" autocomplete="name" placeholder="Nombre" required>
+                    <input class="campo" type="text" name="apellidos" autocomplete="family-name" placeholder="Apellidos" required>
+                    <input class="campo" type="email" name="email" autocomplete="email" placeholder="Email" required>
+                    <input class="campo" type="password" name="password" autocomplete="new-password" placeholder="Contraseña" minlength="6" required>
+                    <input class="campo" type="password" name="password_confirm" autocomplete="new-password" placeholder="Repite la contraseña" minlength="6" required>
+
+                    <div class="captcha">
+                        <div class="g-recaptcha" data-sitekey="6LfK63QsAAAAAEkPRnDEjIpuu3h3qgmXXTgD5Y5P"></div>
+                    </div>
+
+                    <label class="fila-check">
+                        <input class="check" type="checkbox" name="terminos" required>
+                        <span>Acepto los términos</span>
+                    </label>
+
+                    <button class="boton-principal" type="submit">Registrarse</button>
+                </form>
+
+                <a class="enlace-crear" href="./../login/login.html">Ya tengo cuenta</a>
+            </div>
+        </section>
     </main>
     <footer>
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi, Fran Chamizo Dominguez i Unax Maya Rodríguez 
