@@ -32,8 +32,9 @@
             <div class="tarjeta-register">
                 <h2 class="titulo-register">Crear cuenta</h2>
                 <p class="texto-cuenta">Completa el formulario para registrarte</p>
+                <p id="mensajeRegister" class="mensaje-form" role="status" aria-live="polite"></p>
 
-                <form class="formulario-register" action="#" method="post" novalidate>
+                <form id="formRegister" class="formulario-register" action="#" method="get" novalidate>
                     <input class="campo" type="text" name="nombre" autocomplete="name" placeholder="Nombre" required>
                     <input class="campo" type="text" name="apellidos" autocomplete="family-name" placeholder="Apellidos" required>
                     <input class="campo" type="email" name="email" autocomplete="email" placeholder="Email" required>
@@ -59,6 +60,74 @@
     <footer>
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi, Fran Chamizo Dominguez i Unax Maya Rodríguez 
     </footer>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAgRvHeF7Mm9C5P68xQZazWrBVYDcWcpLs",
+            authDomain: "blog-80edc.firebaseapp.com",
+            projectId: "blog-80edc",
+            storageBucket: "blog-80edc.firebasestorage.app",
+            messagingSenderId: "924674388316",
+            appId: "1:924674388316:web:f56547c3ff8d896b235199",
+            measurementId: "G-45B2ZD7D11"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const form = document.getElementById('formRegister');
+        const mensaje = document.getElementById('mensajeRegister');
+
+        function setMensaje(texto, esError) {
+            if (!mensaje) return;
+            mensaje.textContent = texto;
+            mensaje.dataset.tipo = esError ? 'error' : 'ok';
+        }
+
+        if (form) {
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const nombre = form.elements['nombre']?.value?.trim() || '';
+                const apellidos = form.elements['apellidos']?.value?.trim() || '';
+                const email = form.elements['email']?.value?.trim() || '';
+                const password = form.elements['password']?.value || '';
+                const passwordConfirm = form.elements['password_confirm']?.value || '';
+                const terminos = form.elements['terminos']?.checked;
+
+                if (!terminos) {
+                    setMensaje('Debes aceptar los términos.', true);
+                    return;
+                }
+
+                if (password !== passwordConfirm) {
+                    setMensaje('Las contraseñas no coinciden.', true);
+                    return;
+                }
+
+                try {
+                    setMensaje('Creando cuenta...', false);
+                    const cred = await createUserWithEmailAndPassword(auth, email, password);
+                    const displayName = (nombre + ' ' + apellidos).trim();
+                    if (displayName) {
+                        await updateProfile(cred.user, { displayName });
+                    }
+                    setMensaje('Cuenta creada. Ya puedes iniciar sesión.', false);
+                    window.location.href = './../login/login.html';
+                } catch (err) {
+                    const code = err?.code || '';
+                    let texto = 'Error al crear la cuenta.';
+                    if (code === 'auth/email-already-in-use') texto = 'Ese email ya está registrado.';
+                    if (code === 'auth/invalid-email') texto = 'Email no válido.';
+                    if (code === 'auth/weak-password') texto = 'La contraseña es demasiado débil.';
+                    setMensaje(texto, true);
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

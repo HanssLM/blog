@@ -145,6 +145,20 @@ footer {
   color: rgba(0, 0, 0, 0.65);
 }
 
+.mensaje-form {
+  min-height: 1.25rem;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+}
+
+.mensaje-form[data-tipo="error"] {
+  color: #b00020;
+}
+
+.mensaje-form[data-tipo="ok"] {
+  color: rgba(0, 0, 0, 0.75);
+}
+
 .formulario-login {
   width: 100%;
 }
