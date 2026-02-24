@@ -19,10 +19,10 @@
   --color-negro: #000;
   --color-boton: #ff4b2b;
   --sombra-tarjeta: 0 1em 2em rgba(0, 0, 0, 0.20), 0 10px 10px rgba(0, 0, 0, 0.16);
-  --ancho-sidenav: clamp(13.5rem, 24vw, 17.5rem);
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -38,11 +38,12 @@ body {
 
 main {
   min-height: unset;
+  margin-left: 0;
 }
 
 header {
   text-align: center;
-  padding: 1.25rem 1rem;
+  padding: 1.05rem 1rem 0.4rem;
   background-color: var(--color-nav);
   min-height: var(--alto-header);
 }
@@ -51,26 +52,142 @@ nav {
   background-color: var(--color-nav);
 }
 
+.nav-superior {
+  padding: 0.35rem 0.55rem;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0;
+  margin-bottom: 1.5rem;
+  line-height: 0;
+  height: calc(2.75rem + 0.7rem);
+  position: relative;
+}
+
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-boton {
+  display: inline-block;
+  vertical-align: middle;
+  width: 5rem;
+  height: 2.75rem;
+  line-height: 2.75rem;
+  text-align: center;
+  border-radius: 0.75rem;
+  color: var(--color-negro);
+  cursor: pointer;
+  font-size: 1rem;
+  position: absolute;
+  left: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-boton:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
 .barra-nav {
   list-style-type: none;
   margin: 0;
-  padding: 0.5rem;
-  width: var(--ancho-sidenav);
-  background-color: var(--color-nav);
-  position: fixed;
-  top: var(--alto-header);
-  left: 0;
-  height: calc(100vh - var(--alto-header));
-  overflow: auto;
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 2.75rem;
+  opacity: 0;
+  width: 0;
+  transform-origin: left center;
+  position: absolute;
+  left: calc(0.55rem + 5rem);
+  top: 50%;
+  transform: translateY(-50%) translateX(-0.25rem) scaleX(0);
 }
 
 .barra-nav li a {
   display: block;
   color: var(--color-negro);
-  padding: clamp(0.7rem, 1.1vw, 0.9rem) clamp(0.85rem, 1.3vw, 1.05rem);
+  padding: clamp(0.7rem, 1.1vw, 0.9rem) clamp(1.05rem, 1.8vw, 1.35rem);
   font-size: clamp(0.98rem, 1.1vw, 1.05rem);
   text-decoration: none;
   border-radius: 0.75rem;
+}
+
+.barra-nav li {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: clamp(0.25rem, 1.2vw, 0.75rem);
+}
+
+.barra-nav li:last-child {
+  margin-right: 0;
+}
+
+.nav-toggle:checked+.nav-boton+.barra-nav {
+  display: inline-table;
+  width: calc(100% - 5rem - 0.55rem);
+  table-layout: fixed;
+  opacity: 1;
+  overflow-x: hidden;
+  transform: translateY(-50%) translateX(0) scaleX(1);
+  height: 2.75rem;
+}
+
+.nav-toggle:checked+.nav-boton+.barra-nav li {
+  display: table-cell;
+  margin-right: 0;
+  height: 2.75rem;
+}
+
+.nav-toggle:checked+.nav-boton+.barra-nav li a {
+  text-align: center;
+}
+
+@media (max-width: 48em) {
+  .nav-superior {
+    overflow: visible;
+    margin-bottom: clamp(2rem, 8vw, 4rem);
+    height: auto;
+    display: block;
+    table-layout: auto;
+  }
+
+  .barra-nav {
+    height: auto;
+    position: static;
+    left: auto;
+    top: auto;
+    transform: translateX(-0.25rem) scaleX(0);
+  }
+
+  .nav-toggle:checked+.nav-boton+.barra-nav {
+    display: inline-block;
+    width: calc(100% - 5rem);
+    table-layout: auto;
+    white-space: normal;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transform: translateX(0) scaleX(1);
+  }
+
+  .nav-toggle:checked+.nav-boton+.barra-nav li {
+    display: inline-block;
+    width: 50%;
+  }
+
+  .nav-toggle:checked+.nav-boton+.barra-nav li a {
+    text-align: center;
+  }
+}
+
+.nav-toggle:checked+.nav-boton i {
+  transform: rotate(90deg);
 }
 
 .barra-nav li a:hover {
@@ -88,6 +205,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
+  margin-left: 0;
   text-align: center;
   font-size: 0.9em;
   color: var(--color-negro);
@@ -216,35 +334,13 @@ footer {
 }
 
 @media (max-width: 56.25em) {
-  .barra-nav {
-    width: 100%;
-    max-width: none;
-    min-width: 0;
-    height: auto;
-    position: relative;
-  }
-
-  .barra-nav li a {
-    float: left;
-    padding: 0.9em 1em;
-  }
-
-  header,
-  main {
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 26.25em) {
-  .barra-nav li a {
-    float: none;
-    text-align: center;
+  .pagina-login {
+    padding-top: clamp(3rem, 8vw, 6rem);
   }
 }
 
 @media (max-width: 30em) {
   .boton-principal {
-    width: 100%;
     padding: 12px 0;
   }
 }

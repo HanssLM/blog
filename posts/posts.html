@@ -26,11 +26,27 @@
     </nav>
     <main>
 
+        <p id="estadoAuth" role="status" aria-live="polite"></p>
+        <p id="msgPost" class="mensaje-form" role="status" aria-live="polite"></p>
+
+        <form id="formPost" action="#" method="get" novalidate style="display:none;">
+            <input type="text" name="title" placeholder="Título" required>
+            <textarea name="content" placeholder="Contenido" rows="6" required></textarea>
+            <label>
+                <input type="checkbox" name="published" checked>
+                Publicado
+            </label>
+            <button type="submit">Crear post</button>
+        </form>
+
+        <section id="listaPosts" aria-label="Listado de posts"></section>
 
     </main>
     <footer>
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi i Fran Chamizo Dominguez
     </footer>
+
+    <script type="module" src="./js/posts.js"></script>
 </body>
 
 </html>

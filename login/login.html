@@ -10,13 +10,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
     <header>
         <h1>Ultimes tecnologies de Hardware</h1>
     </header>
-    <nav>
+    <nav class="nav-superior" aria-label="Menú principal">
+        <input class="nav-toggle" type="checkbox" id="navToggle">
+        <label class="nav-boton" for="navToggle" aria-label="Abrir o cerrar menú">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </label>
         <ul class="barra-nav">
             <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
             <li><a href="./../posts/posts.html"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
@@ -45,6 +50,11 @@
                     <input class="campo" type="email" name="email" autocomplete="email" placeholder="Email" required>
                     <input class="campo" type="password" name="password" autocomplete="current-password" placeholder="Contraseña" minlength="6" required>
                     <a class="enlace" href="#">¿Olvidaste tu contraseña?</a>
+
+                    <div class="captcha">
+                        <div class="g-recaptcha" data-sitekey="6LfVKXYsAAAAABd1uQITmIUiOx0s_9YTTzvIUh23"></div>
+                    </div>
+
                     <button class="boton-principal" type="submit">Entrar</button>
                 </form>
 
@@ -54,57 +64,11 @@
     </main>
 
     <footer>
-        &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi, Fran Chamizo Dominguez i Unax Maya Rodríguez
+        &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi
     </footer>
 
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+    <script type="module" src="./js/login.js"></script>
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAgRvHeF7Mm9C5P68xQZazWrBVYDcWcpLs",
-            authDomain: "blog-80edc.firebaseapp.com",
-            projectId: "blog-80edc",
-            storageBucket: "blog-80edc.firebasestorage.app",
-            messagingSenderId: "924674388316",
-            appId: "1:924674388316:web:f56547c3ff8d896b235199",
-            measurementId: "G-45B2ZD7D11"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        const form = document.getElementById('formLogin');
-        const mensaje = document.getElementById('mensajeLogin');
-
-        function setMensaje(texto, esError) {
-            if (!mensaje) return;
-            mensaje.textContent = texto;
-            mensaje.dataset.tipo = esError ? 'error' : 'ok';
-        }
-
-        if (form) {
-            form.addEventListener('submit', async function (e) {
-                e.preventDefault();
-
-                const email = form.elements['email']?.value?.trim() || '';
-                const password = form.elements['password']?.value || '';
-
-                try {
-                    setMensaje('Iniciando sesión...', false);
-                    await signInWithEmailAndPassword(auth, email, password);
-                    setMensaje('Sesión iniciada.', false);
-                    window.location.href = './../index.html';
-                } catch (err) {
-                    const code = err?.code || '';
-                    let texto = 'Error al iniciar sesión.';
-                    if (code === 'auth/invalid-credential') texto = 'Email o contraseña incorrectos.';
-                    if (code === 'auth/invalid-email') texto = 'Email no válido.';
-                    setMensaje(texto, true);
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>

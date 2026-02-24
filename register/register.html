@@ -42,7 +42,7 @@
                     <input class="campo" type="password" name="password_confirm" autocomplete="new-password" placeholder="Repite la contraseña" minlength="6" required>
 
                     <div class="captcha">
-                        <div class="g-recaptcha" data-sitekey="6LfK63QsAAAAAEkPRnDEjIpuu3h3qgmXXTgD5Y5P"></div>
+                        <div class="g-recaptcha" data-sitekey="6LfVKXYsAAAAABd1uQITmIUiOx0s_9YTTzvIUh23"></div>
                     </div>
 
                     <label class="fila-check">
@@ -66,13 +66,13 @@
         import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
         const firebaseConfig = {
-            apiKey: "AIzaSyAgRvHeF7Mm9C5P68xQZazWrBVYDcWcpLs",
-            authDomain: "blog-80edc.firebaseapp.com",
-            projectId: "blog-80edc",
-            storageBucket: "blog-80edc.firebasestorage.app",
-            messagingSenderId: "924674388316",
-            appId: "1:924674388316:web:f56547c3ff8d896b235199",
-            measurementId: "G-45B2ZD7D11"
+            apiKey: "AIzaSyAjwFzt5h5lbjjOzhG0TtFHfbstsna98NI",
+            authDomain: "blog-68913.firebaseapp.com",
+            projectId: "blog-68913",
+            storageBucket: "blog-68913.firebasestorage.app",
+            messagingSenderId: "735969933987",
+            appId: "1:735969933987:web:a10854bb9f67c8fbd51d16",
+            measurementId: "G-98QJJPP1Q0"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -98,6 +98,12 @@
                 const passwordConfirm = form.elements['password_confirm']?.value || '';
                 const terminos = form.elements['terminos']?.checked;
 
+                const captchaToken = window.grecaptcha?.getResponse?.() || '';
+                if (!captchaToken) {
+                    setMensaje('Completa el reCAPTCHA.', true);
+                    return;
+                }
+
                 if (!terminos) {
                     setMensaje('Debes aceptar los términos.', true);
                     return;
@@ -115,6 +121,7 @@
                     if (displayName) {
                         await updateProfile(cred.user, { displayName });
                     }
+                    window.grecaptcha?.reset?.();
                     setMensaje('Cuenta creada. Ya puedes iniciar sesión.', false);
                     window.location.href = './../login/login.html';
                 } catch (err) {
@@ -123,6 +130,7 @@
                     if (code === 'auth/email-already-in-use') texto = 'Ese email ya está registrado.';
                     if (code === 'auth/invalid-email') texto = 'Email no válido.';
                     if (code === 'auth/weak-password') texto = 'La contraseña es demasiado débil.';
+                    window.grecaptcha?.reset?.();
                     setMensaje(texto, true);
                 }
             });
