@@ -220,7 +220,7 @@ header.blog-hero::after {
     backdrop-filter: blur(12px);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    max-width: 100%;
+    width: 100%;
 }
 
 .posts-toolbar-inner:has(.toolbar-filtres[open]) {
