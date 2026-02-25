@@ -113,7 +113,7 @@
                         <p id="tagsHelp" class="campo-help">Separa les etiquetes amb comes. S'afegeixen com a #tag.</p>
 
                         <label class="campo-label" for="visibility">Visibilitat</label>
-                        <div class="visibility-picker" role="radiogroup" aria-label="Visibilitat">
+                        <div id="visibility" class="visibility-picker" role="radiogroup" aria-label="Visibilitat">
                             <label class="visibility-option">
                                 <input type="radio" name="visibility" value="public" checked>
                                 <span class="visibility-card">
@@ -137,11 +137,11 @@
                             </label>
                         </div>
 
-                        <label class="campo-label" for="imageFile">Imatge</label>
+                        <label class="campo-label" for="imageUrl">Imatge</label>
                         <div class="image-uploader">
-                            <input id="imageFile" type="file" name="imageFile" accept="image/*">
+                            <input id="imageUrl" type="url" name="imageUrl" placeholder="https://..." autocomplete="off">
                             <img id="imagePreview" class="image-preview" alt="" hidden>
-                            <p class="campo-help">Formats recomanats: JPG/PNG/WebP. (Puja a Firebase Storage)</p>
+                            <p class="campo-help">Enganxa una URL d'imatge (JPG/PNG/WebP). Firebase Storage requereix pla de pagament.</p>
                         </div>
 
                         <div class="modal-actions">

@@ -9,13 +9,7 @@ import {
   where
 } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-import {
-  getDownloadURL,
-  ref as storageRef,
-  uploadBytesResumable
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
-
-import { auth, db, storage } from './../../js/firebase.js';
+import { auth, db } from './../../js/firebase.js';
 
 const estado = document.getElementById('estadoAuth');
 const lista = document.getElementById('listaPosts');
@@ -34,7 +28,7 @@ const btnOpenModal = document.getElementById('btnOpenModal');
 const modalCrearPost = document.getElementById('crearPostModal');
 let lastActiveElement = null;
 
-const imageFileInput = document.getElementById('imageFile');
+const imageUrlInput = document.getElementById('imageUrl');
 const imagePreview = document.getElementById('imagePreview');
 let previewObjectUrl = null;
 
@@ -544,39 +538,30 @@ if (formFiltres) {
   });
 }
 
-if (imageFileInput && imagePreview) {
-  imageFileInput.addEventListener('change', () => {
-    const file = imageFileInput.files?.[0] || null;
-    if (!file) {
-      imagePreview.hidden = true;
-      imagePreview.removeAttribute('src');
-      if (previewObjectUrl) {
-        URL.revokeObjectURL(previewObjectUrl);
-        previewObjectUrl = null;
-      }
+if (imageUrlInput && imagePreview) {
+  imageUrlInput.addEventListener('input', () => {
+    const raw = String(imageUrlInput.value || '').trim();
+
+    imagePreview.hidden = true;
+    imagePreview.removeAttribute('src');
+
+    if (previewObjectUrl) {
+      URL.revokeObjectURL(previewObjectUrl);
+      previewObjectUrl = null;
+    }
+
+    if (!raw) return;
+
+    let parsed = null;
+    try {
+      parsed = new URL(raw);
+    } catch {
       return;
     }
 
-    const maxBytes = 5 * 1024 * 1024;
-    const isImage = typeof file.type === 'string' && file.type.startsWith('image/');
-    if (!isImage) {
-      setMsg('La imatge ha de ser un fitxer d\'imatge (JPG/PNG/WebP).', true);
-      imageFileInput.value = '';
-      imagePreview.hidden = true;
-      imagePreview.removeAttribute('src');
-      return;
-    }
-    if (file.size > maxBytes) {
-      setMsg('La imatge és massa gran (màxim 5MB).', true);
-      imageFileInput.value = '';
-      imagePreview.hidden = true;
-      imagePreview.removeAttribute('src');
-      return;
-    }
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return;
 
-    if (previewObjectUrl) URL.revokeObjectURL(previewObjectUrl);
-    previewObjectUrl = URL.createObjectURL(file);
-    imagePreview.src = previewObjectUrl;
+    imagePreview.src = parsed.toString();
     imagePreview.hidden = false;
   });
 }
@@ -871,7 +856,7 @@ if (form) {
     const content = form.elements['content']?.value?.trim() || '';
     const visibility = normVisibility(form.elements['visibility']?.value);
     const published = visibility === 'public';
-    const imageFile = form.elements['imageFile']?.files?.[0] || null;
+    const imageUrlRaw = form.elements['imageUrl']?.value?.trim() || '';
     const rawTags = form.elements['tags']?.value?.trim() || '';
     const tags = rawTags ? uniqTags(rawTags.split(',')).slice(0, 10) : [];
     const slug = slugify(title);
@@ -892,15 +877,17 @@ if (form) {
       return;
     }
 
-    if (imageFile) {
-      const maxBytes = 5 * 1024 * 1024;
-      const isImage = typeof imageFile.type === 'string' && imageFile.type.startsWith('image/');
-      if (!isImage) {
-        setMsg('La imatge ha de ser un fitxer d\'imatge (JPG/PNG/WebP).', true);
-        return;
-      }
-      if (imageFile.size > maxBytes) {
-        setMsg('La imatge és massa gran (màxim 5MB).', true);
+    let imageUrl = null;
+    if (imageUrlRaw) {
+      try {
+        const u = new URL(imageUrlRaw);
+        if (u.protocol !== 'http:' && u.protocol !== 'https:') {
+          setMsg("La URL de la imatge ha de començar per http o https.", true);
+          return;
+        }
+        imageUrl = u.toString();
+      } catch {
+        setMsg("La URL de la imatge no és vàlida.", true);
         return;
       }
     }
@@ -914,49 +901,6 @@ if (form) {
       isSubmittingPost = true;
       setPublishUi(true);
       setMsg('Publicant...', false);
-
-      let imageUrl = null;
-      if (imageFile) {
-        const safeName = String(imageFile.name || 'image')
-          .replace(/[^a-z0-9._-]+/gi, '_')
-          .slice(0, 80);
-        const path = `posts/${user.uid}/${Date.now()}_${safeName}`;
-        const imgRef = storageRef(storage, path);
-
-        const task = uploadBytesResumable(imgRef, imageFile);
-
-        const uploadPromise = new Promise((resolve, reject) => {
-          task.on(
-            'state_changed',
-            (snap) => {
-              const total = snap.totalBytes || 0;
-              const done = snap.bytesTransferred || 0;
-              const pct = total ? Math.round((done / total) * 100) : 0;
-              setMsg(`Pujant imatge… ${pct}%`, false);
-            },
-            (err) => reject(err),
-            async () => {
-              try {
-                const url = await getDownloadURL(task.snapshot.ref);
-                resolve(url);
-              } catch (err) {
-                reject(err);
-              }
-            }
-          );
-        });
-
-        try {
-          imageUrl = await withTimeout(uploadPromise, 45000, 'storage-upload');
-        } catch (err) {
-          try {
-            task.cancel();
-          } catch {
-            // ignore
-          }
-          throw err;
-        }
-      }
 
       await withTimeout(addDoc(collection(db, 'posts'), {
         title,
@@ -978,9 +922,7 @@ if (form) {
       const code = err?.code ? ` (${err.code})` : '';
       console.error(err);
       const msgErr = String(err?.message || '');
-      if (msgErr.startsWith('timeout:storage-upload')) {
-        setMsg("La pujada de la imatge s'ha quedat penjada (timeout). Revisa Storage Rules o la connexió.", true);
-      } else if (msgErr.startsWith('timeout:firestore-addDoc')) {
+      if (msgErr.startsWith('timeout:firestore-addDoc')) {
         setMsg("Guardant el post s'ha quedat penjat (timeout). Revisa Firestore Rules o la connexió.", true);
       } else if (msgErr.startsWith('timeout:reload-posts')) {
         setMsg('Post creat, però ha fallat recarregar la llista (timeout). Refresca la pàgina.', true);
