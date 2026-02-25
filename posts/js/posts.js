@@ -610,6 +610,7 @@ function isModalOpen() {
 function openModal() {
   if (!modalCrearPost) return;
   lastActiveElement = document.activeElement;
+  modalCrearPost.style.display = 'flex';
   modalCrearPost.classList.add('is-open');
   modalCrearPost.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
@@ -622,6 +623,7 @@ function closeModal() {
   modalCrearPost.classList.remove('is-open');
   modalCrearPost.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
+  modalCrearPost.style.display = 'none';
   if (lastActiveElement instanceof HTMLElement) lastActiveElement.focus();
   lastActiveElement = null;
 
@@ -637,6 +639,11 @@ function closeModal() {
 }
 
 if (btnOpenModal && modalCrearPost) {
+  if (!modalCrearPost.classList.contains('is-open')) {
+    modalCrearPost.style.display = 'none';
+    modalCrearPost.setAttribute('aria-hidden', 'true');
+  }
+
   btnOpenModal.addEventListener('click', () => openModal());
 
   modalCrearPost.addEventListener('click', (ev) => {
