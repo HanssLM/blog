@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ca">
-
+ 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
-
+ 
 <body>
     <header class="blog-hero">
         <div class="hero-inner">
@@ -20,9 +20,9 @@
             <p class="hero-subtitle">Guies, idees i novetats. Troba el que t’interessa i continua llegint.</p>
         </div>
     </header>
-
+ 
     <nav class="nav-principal" aria-label="Navegación principal">
-        <ul class="nav-lista">
+        <ul class="nav-llista">
             <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
             <li><a href="./../posts/posts.html" aria-current="page"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
             <li><a href="./../about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre Nosaltres</a></li>
@@ -32,14 +32,14 @@
         </ul>
     </nav>
     <main>
-
+ 
         <div class="posts-contenedor">
             <p id="estadoAuth" class="estado-auth" role="status" aria-live="polite"></p>
             <p id="msgPost" class="mensaje-form" role="status" aria-live="polite"></p>
-
+ 
             <section class="posts-toolbar" aria-label="Accions i filtres">
                 <div class="posts-toolbar-inner">
-                    <a class="toolbar-btn toolbar-btn-primary" href="#bloqueCrearPost">Crear post</a>
+                    <button id="btnOpenModal" class="toolbar-btn toolbar-btn-primary" type="button">Crear post</button>
                     <details id="filtresPosts" class="toolbar-filtres">
                         <summary class="toolbar-btn toolbar-btn-ghost">Filtres</summary>
                         <div class="toolbar-filtres-panel" aria-label="Filtres de posts">
@@ -84,41 +84,60 @@
                     </details>
                 </div>
             </section>
-
+ 
             <section id="bloqueCrearPost" class="bloque bloque-form" aria-label="Crear post">
-                <details class="crear-posts">
-                    <summary class="crear-posts-summary">Crear post</summary>
-                    <form id="formPost" class="form-post" action="#" method="get" novalidate style="display:none;">
-
-                        <label class="campo-label" for="title">Título</label>
-                        <input id="title" type="text" name="title" placeholder="Título" required>
-
-                        <label class="campo-label" for="content">Contenido</label>
-                        <textarea id="content" name="content" placeholder="Contenido" rows="6" required></textarea>
-
+                <h3 class="bloque-titulo">Crear post</h3>
+                <p class="bloque-descripcion">Pulsa el botó per obrir el formulari emergent i crear una nova entrada.</p>
+            </section>
+ 
+            <div id="crearPostModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo" aria-hidden="true">
+                <div class="modal-overlay" data-close-modal></div>
+                <div class="modal-dialog" role="document">
+                    <header class="modal-header">
+                        <div>
+                            <p class="modal-kicker">Nou article</p>
+                            <h2 id="modalTitulo">Crear post</h2>
+                        </div>
+                        <button class="modal-close" type="button" aria-label="Cerrar" data-close-modal>&times;</button>
+                    </header>
+                    <form id="formPost" class="form-post" action="#" method="get" novalidate>
+                        <label class="campo-label" for="title">Títol</label>
+                        <input id="title" type="text" name="title" placeholder="Títol del post" required>
+ 
+                        <label class="campo-label" for="content">Contingut</label>
+                        <textarea id="content" name="content" placeholder="Escriu aquí el contingut" rows="8" required></textarea>
+ 
+                        <label class="campo-label" for="tags">Etiquetes</label>
+                        <input id="tags" type="text" name="tags" placeholder="tech, gaming, xarxa" aria-describedby="tagsHelp">
+                        <p id="tagsHelp" class="campo-help">Separa les etiquetes amb comes. S'afegeixen com a #tag.</p>
+ 
+                        <label class="campo-label" for="imageUrl">Imatge (URL)</label>
+                        <input id="imageUrl" type="url" name="imageUrl" placeholder="https://..." inputmode="url">
+ 
                         <label class="check-publicado">
                             <input type="checkbox" name="published" checked>
-                            Publicado
+                            Publicat
                         </label>
-
-                        <button type="submit">Crear post</button>
+ 
+                        <div class="modal-actions">
+                            <button type="button" class="btn-ghost" data-close-modal>Cancel·lar</button>
+                            <button type="submit" class="btn-primary">Crear post</button>
+                        </div>
                     </form>
-                </details>
-            </section>
-
+                </div>
+            </div>
+ 
             <section class="bloque bloque-lista" aria-label="Listado de posts">
                 <h3 class="bloque-titulo">Posts</h3>
                 <section id="listaPosts" class="lista-posts" aria-label="Listado de posts"></section>
                 <nav id="paginacionPosts" class="paginacion" aria-label="Paginación de posts"></nav>
             </section>
         </div>
-
+ 
     </main>
     <footer>
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi
     </footer>
-
+ 
     <script type="module" src="./js/posts.js"></script>
 </body>
-
-</html>

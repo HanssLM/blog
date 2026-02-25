@@ -39,7 +39,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-2',
     title: 'Nuevas GPUs: qué mirar antes de comprar',
-    author: 'Fran',
+    author: 'Hans',
     tags: ['gpu', 'benchmark', 'compra'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.',
@@ -49,7 +49,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-3',
     title: 'RAM DDR5: latencias, perfiles XMP y recomendaciones',
-    author: 'Unax',
+    author: 'Hans',
     tags: ['ram', 'ddr5', 'xmp'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.',
@@ -69,7 +69,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-5',
     title: 'PSU: cómo elegir una fuente sin morir en el intento',
-    author: 'Fran',
+    author: 'Hans',
     tags: ['psu', 'seguridad', 'guía'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.',
@@ -79,7 +79,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-6',
     title: 'Refrigeración: aire vs AIO',
-    author: 'Unax',
+    author: 'Hans',
     tags: ['cooling', 'aio', 'air'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor.',
@@ -99,7 +99,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-8',
     title: 'Placas base: VRM, fases y estabilidad',
-    author: 'Fran',
+    author: 'Hans',
     tags: ['motherboard', 'vrm', 'oc'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.',
@@ -109,7 +109,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-9',
     title: 'Teclados mecánicos: switches y layout',
-    author: 'Unax',
+    author: 'Hans',
     tags: ['keyboard', 'switches', 'setup'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.',
@@ -129,7 +129,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-11',
     title: 'Cajas PC: airflow y filtros de polvo',
-    author: 'Fran',
+    author: 'Hans',
     tags: ['case', 'airflow', 'build'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam.',
@@ -139,7 +139,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-12',
     title: 'WiFi 7: ¿vale la pena ya?',
-    author: 'Unax',
+    author: 'Hans',
     tags: ['wifi', 'network', 'router'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.',
@@ -159,7 +159,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-14',
     title: 'Windows vs Linux para gaming',
-    author: 'Fran',
+    author: 'Hans',
     tags: ['os', 'linux', 'gaming'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.',
@@ -169,7 +169,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-15',
     title: 'Guía de backups: 3-2-1 en casa',
-    author: 'Unax',
+    author: 'Hans',
     tags: ['backup', 'nas', 'seguridad'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae.',
@@ -189,7 +189,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-17',
     title: 'Cableado y gestión: tu setup limpio en 30 minutos',
-    author: 'Fran',
+    author: 'Hans',
     tags: ['setup', 'cables', 'organización'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Cras mattis consectetur purus sit amet fermentum. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.',
@@ -199,7 +199,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-18',
     title: 'Cómo elegir portátil: CPU, GPU y autonomía',
-    author: 'Unax',
+    author: 'Hans',
     tags: ['laptop', 'compra', 'guía'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.',
@@ -219,7 +219,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-20',
     title: 'Red local: latencia, QoS y trucos para jugar mejor',
-    author: 'Fran',
+    author: 'Hans',
     tags: ['network', 'qos', 'latency'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.',
@@ -229,7 +229,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-21',
     title: 'Almacenamiento: HDD todavía sirve? Casos reales',
-    author: 'Unax',
+    author: 'Hans',
     tags: ['storage', 'hdd', 'archivos'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Duis mollis, est non commodo luctus.',
@@ -249,7 +249,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-23',
     title: 'Linux para devs: distros, tooling y productividad',
-    author: 'Fran',
+    author: 'Hans',
     tags: ['linux', 'dev', 'tooling'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor.',
@@ -259,7 +259,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-24',
     title: 'Sillas gaming: ergonomía real vs marketing',
-    author: 'Unax',
+    author: 'Hans',
     tags: ['ergonomía', 'setup', 'salud'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula.',
@@ -279,7 +279,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-26',
     title: 'Monitores ultrawide: pros y contras para estudiar',
-    author: 'Fran',
+    author: 'Hans',
     tags: ['monitor', 'ultrawide', 'productividad'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur blandit tempus porttitor.',
@@ -289,7 +289,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-27',
     title: 'Qué es una BIOS y por qué deberías actualizarla',
-    author: 'Unax',
+    author: 'Hans',
     tags: ['bios', 'motherboard', 'seguridad'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum.',
@@ -309,7 +309,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-29',
     title: 'Seguridad en casa: 2FA, passwords y hábitos',
-    author: 'Fran',
+    author: 'Hans',
     tags: ['seguridad', '2fa', 'passwords'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Curabitur blandit tempus porttitor. Donec sed odio dui.',
@@ -319,7 +319,7 @@ const MOCK_POSTS = [
   {
     id: 'mock-30',
     title: 'NAS casero: cuándo compensa y cómo empezar',
-    author: 'Unax',
+    author: 'Hans',
     tags: ['nas', 'backup', 'home-lab'],
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue.',
