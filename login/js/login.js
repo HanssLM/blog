@@ -48,7 +48,9 @@ if (form) {
       if (code === 'auth/invalid-credential') texto = 'Email o contraseña incorrectos.';
       if (code === 'auth/invalid-email') texto = 'Email no válido.';
       window.grecaptcha?.reset?.();
-      setMensaje(texto, true);
+      console.error(err);
+      const sufijo = code ? ` (${code})` : '';
+      setMensaje(texto + sufijo, true);
     }
   });
 }

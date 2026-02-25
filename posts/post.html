@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>M8 Aplicacions Web</title>
+    <meta name="description" content="Detalle de post">
+    <meta name="author" content="Hans Lao Moncusi">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <header class="blog-hero">
+        <div class="hero-inner">
+            <p class="hero-kicker">ARTICLE</p>
+            <h1 class="hero-title">Detalle de publicación</h1>
+            <p class="hero-subtitle">Lee el contenido completo del post.</p>
+        </div>
+    </header>
+
+    <nav class="nav-principal" aria-label="Navegación principal">
+        <ul class="nav-lista">
+            <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
+            <li><a href="./../posts/posts.html" aria-current="page"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
+            <li><a href="./../about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre Nosaltres</a></li>
+            <li><a href="./../contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contacte</a></li>
+            <li><a href="./../login/login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Accedir</a></li>
+            <li><a href="./../register/register.html"><i class="fas fa-user-plus"></i>&nbsp;Registre</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="posts-contenedor">
+            <p id="msgPost" class="mensaje-form" role="status" aria-live="polite"></p>
+
+            <section class="bloque" aria-label="Detalle de post">
+                <a id="volverPosts" class="post-volver" href="./posts.html">← Volver a posts</a>
+                <article id="postDetalle" class="post-detalle"></article>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi
+    </footer>
+
+    <script type="module" src="./js/post.js"></script>
+</body>
+
+</html>
