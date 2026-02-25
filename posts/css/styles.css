@@ -523,7 +523,8 @@ header.blog-hero::after {
   backdrop-filter: blur(10px);
 }
 
-.nav-llista {
+.nav-llista,
+.nav-lista {
   list-style-type: none;
   overflow: hidden;
   width: min(1560px, 100%);
@@ -531,12 +532,14 @@ header.blog-hero::after {
   padding: 0.5rem 0.25rem;
 }
 
-.nav-llista li {
+.nav-llista li,
+.nav-lista li {
   float: inline-start;
   padding: .35rem .2rem
 }
 
-.nav-llista li a {
+.nav-llista li a,
+.nav-lista li a {
   display: block;
   color: rgba(15, 23, 42, 0.92);
   text-align: center;
@@ -547,22 +550,26 @@ header.blog-hero::after {
   line-height: 1.2;
 }
 
-.nav-llista li a:hover {
+.nav-llista li a:hover,
+.nav-lista li a:hover {
   background: rgba(15, 23, 42, 0.06);
 }
 
-.nav-llista li a:focus-visible {
+.nav-llista li a:focus-visible,
+.nav-lista li a:focus-visible {
   outline: 0.18rem solid rgba(0, 0, 0, 0.35);
   outline-offset: 0.18rem;
 }
 
-.nav-llista li a[aria-current="page"] {
+.nav-llista li a[aria-current="page"],
+.nav-lista li a[aria-current="page"] {
   background: var(--color-primario-weak);
   color: var(--color-primario);
   font-weight: 700;
 }
 
-.nav-llista li a i {
+.nav-llista li a i,
+.nav-lista li a i {
   width: 1.2em;
   text-align: center;
 }
@@ -878,10 +885,12 @@ nav {
 }
 
 @media (max-width: 40em) {
-  .nav-llista li {
+  .nav-llista li,
+  .nav-lista li {
     float: none;
   }
-  .nav-llista li a {
+  .nav-llista li a,
+  .nav-lista li a {
     text-align: left;
     margin: 0.15rem 0.25rem;
   }
