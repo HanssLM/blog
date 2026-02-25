@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ca">
- 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
- 
+
 <body>
     <header class="blog-hero">
         <div class="hero-inner">
@@ -20,9 +20,9 @@
             <p class="hero-subtitle">Guies, idees i novetats. Troba el que t’interessa i continua llegint.</p>
         </div>
     </header>
- 
+
     <nav class="nav-principal" aria-label="Navegación principal">
-        <ul class="nav-llista">
+        <ul class="nav-lista">
             <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
             <li><a href="./../posts/posts.html" aria-current="page"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
             <li><a href="./../about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre Nosaltres</a></li>
@@ -32,11 +32,11 @@
         </ul>
     </nav>
     <main>
- 
+
         <div class="posts-contenedor">
             <p id="estadoAuth" class="estado-auth" role="status" aria-live="polite"></p>
             <p id="msgPost" class="mensaje-form" role="status" aria-live="polite"></p>
- 
+
             <section class="posts-toolbar" aria-label="Accions i filtres">
                 <div class="posts-toolbar-inner">
                     <button id="btnOpenModal" class="toolbar-btn toolbar-btn-primary" type="button">Crear post</button>
@@ -75,21 +75,22 @@
                                             <option value="title">Títol (A-Z)</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="filtres-actions">
-                                    <button id="btnResetFiltres" type="reset" class="filtres-reset">Netejar</button>
+                                    <div class="filtre-campo filtre-campo-actions">
+                                        <span class="campo-label sr-only">Accions</span>
+                                        <button id="btnResetFiltres" type="reset" class="filtres-reset">Netejar</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </details>
                 </div>
             </section>
- 
+
             <section id="bloqueCrearPost" class="bloque bloque-form" aria-label="Crear post">
                 <h3 class="bloque-titulo">Crear post</h3>
                 <p class="bloque-descripcion">Pulsa el botó per obrir el formulari emergent i crear una nova entrada.</p>
             </section>
- 
+
             <div id="crearPostModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo" aria-hidden="true">
                 <div class="modal-overlay" data-close-modal></div>
                 <div class="modal-dialog" role="document">
@@ -103,41 +104,67 @@
                     <form id="formPost" class="form-post" action="#" method="get" novalidate>
                         <label class="campo-label" for="title">Títol</label>
                         <input id="title" type="text" name="title" placeholder="Títol del post" required>
- 
+
                         <label class="campo-label" for="content">Contingut</label>
                         <textarea id="content" name="content" placeholder="Escriu aquí el contingut" rows="8" required></textarea>
- 
+
                         <label class="campo-label" for="tags">Etiquetes</label>
                         <input id="tags" type="text" name="tags" placeholder="tech, gaming, xarxa" aria-describedby="tagsHelp">
                         <p id="tagsHelp" class="campo-help">Separa les etiquetes amb comes. S'afegeixen com a #tag.</p>
- 
-                        <label class="campo-label" for="imageUrl">Imatge (URL)</label>
-                        <input id="imageUrl" type="url" name="imageUrl" placeholder="https://..." inputmode="url">
- 
-                        <label class="check-publicado">
-                            <input type="checkbox" name="published" checked>
-                            Publicat
-                        </label>
- 
+
+                        <label class="campo-label" for="visibility">Visibilitat</label>
+                        <div class="visibility-picker" role="radiogroup" aria-label="Visibilitat">
+                            <label class="visibility-option">
+                                <input type="radio" name="visibility" value="public" checked>
+                                <span class="visibility-card">
+                                    <span class="visibility-title">Public</span>
+                                    <span class="visibility-desc">(per a tothom)</span>
+                                </span>
+                            </label>
+                            <label class="visibility-option">
+                                <input type="radio" name="visibility" value="private">
+                                <span class="visibility-card">
+                                    <span class="visibility-title">Privat</span>
+                                    <span class="visibility-desc">(només tu el pots veure)</span>
+                                </span>
+                            </label>
+                            <label class="visibility-option">
+                                <input type="radio" name="visibility" value="unlisted">
+                                <span class="visibility-card">
+                                    <span class="visibility-title">Ocult</span>
+                                    <span class="visibility-desc">(tothom qui tingui l'enllaç)</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <label class="campo-label" for="imageFile">Imatge</label>
+                        <div class="image-uploader">
+                            <input id="imageFile" type="file" name="imageFile" accept="image/*">
+                            <img id="imagePreview" class="image-preview" alt="" hidden>
+                            <p class="campo-help">Formats recomanats: JPG/PNG/WebP. (Puja a Firebase Storage)</p>
+                        </div>
+
                         <div class="modal-actions">
-                            <button type="button" class="btn-ghost" data-close-modal>Cancel·lar</button>
-                            <button type="submit" class="btn-primary">Crear post</button>
+                            <button type="button" class="btn-cancelar" data-close-modal>Cancel·lar</button>
+                            <button type="submit" class="btn-publicar">Publicar</button>
                         </div>
                     </form>
                 </div>
             </div>
- 
+
             <section class="bloque bloque-lista" aria-label="Listado de posts">
                 <h3 class="bloque-titulo">Posts</h3>
                 <section id="listaPosts" class="lista-posts" aria-label="Listado de posts"></section>
                 <nav id="paginacionPosts" class="paginacion" aria-label="Paginación de posts"></nav>
             </section>
         </div>
- 
+
     </main>
     <footer>
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi
     </footer>
- 
+
     <script type="module" src="./js/posts.js"></script>
 </body>
+
+</html>

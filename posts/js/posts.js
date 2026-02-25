@@ -9,7 +9,13 @@ import {
   where
 } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-import { auth, db } from './../../js/firebase.js';
+import {
+  getDownloadURL,
+  ref as storageRef,
+  uploadBytesResumable
+} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
+
+import { auth, db, storage } from './../../js/firebase.js';
 
 const estado = document.getElementById('estadoAuth');
 const lista = document.getElementById('listaPosts');
@@ -22,6 +28,17 @@ const filtreText = document.getElementById('filtreText');
 const filtreTag = document.getElementById('filtreTag');
 const filtreSort = document.getElementById('filtreSort');
 const btnResetFiltres = document.getElementById('btnResetFiltres');
+const btnClearSearch = document.getElementById('btnClearSearch');
+
+const btnOpenModal = document.getElementById('btnOpenModal');
+const modalCrearPost = document.getElementById('crearPostModal');
+let lastActiveElement = null;
+
+const imageFileInput = document.getElementById('imageFile');
+const imagePreview = document.getElementById('imagePreview');
+let previewObjectUrl = null;
+
+let isSubmittingPost = false;
 
 const USE_MOCK = new URLSearchParams(window.location.search).has('mock');
 
@@ -389,6 +406,44 @@ function normTag(t) {
   return s.startsWith('#') ? s.slice(1).trim() : s;
 }
 
+function uniqTags(list) {
+  const seen = new Set();
+  const out = [];
+  for (const raw of list) {
+    const t = normTag(raw);
+    const key = t.toLowerCase();
+    if (!t || seen.has(key)) continue;
+    seen.add(key);
+    out.push(t);
+  }
+  return out;
+}
+
+function slugify(text) {
+  const s = String(text || '')
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return s || 'post';
+}
+
+function normVisibility(v) {
+  const s = String(v || '').trim().toLowerCase();
+  if (s === 'public' || s === 'unlisted' || s === 'private') return s;
+  return 'public';
+}
+
+function postVisibility(post) {
+  if (post?.visibility) return normVisibility(post.visibility);
+  if (typeof post?.published === 'boolean') return post.published ? 'public' : 'private';
+  return 'public';
+}
+
 function toDateValue(v) {
   if (v?.toDate?.()) return v.toDate();
   if (v instanceof Date) return v;
@@ -473,6 +528,58 @@ if (formFiltres) {
   });
 }
 
+if (imageFileInput && imagePreview) {
+  imageFileInput.addEventListener('change', () => {
+    const file = imageFileInput.files?.[0] || null;
+    if (!file) {
+      imagePreview.hidden = true;
+      imagePreview.removeAttribute('src');
+      if (previewObjectUrl) {
+        URL.revokeObjectURL(previewObjectUrl);
+        previewObjectUrl = null;
+      }
+      return;
+    }
+
+    const maxBytes = 5 * 1024 * 1024;
+    const isImage = typeof file.type === 'string' && file.type.startsWith('image/');
+    if (!isImage) {
+      setMsg('La imatge ha de ser un fitxer d\'imatge (JPG/PNG/WebP).', true);
+      imageFileInput.value = '';
+      imagePreview.hidden = true;
+      imagePreview.removeAttribute('src');
+      return;
+    }
+    if (file.size > maxBytes) {
+      setMsg('La imatge és massa gran (màxim 5MB).', true);
+      imageFileInput.value = '';
+      imagePreview.hidden = true;
+      imagePreview.removeAttribute('src');
+      return;
+    }
+
+    if (previewObjectUrl) URL.revokeObjectURL(previewObjectUrl);
+    previewObjectUrl = URL.createObjectURL(file);
+    imagePreview.src = previewObjectUrl;
+    imagePreview.hidden = false;
+  });
+}
+
+function setPublishUi(isPublishing) {
+  const btn = form?.querySelector?.('button[type="submit"]');
+  if (!(btn instanceof HTMLButtonElement)) return;
+  if (isPublishing) {
+    btn.disabled = true;
+    btn.dataset.originalText = btn.textContent || '';
+    btn.textContent = 'Publicant…';
+  } else {
+    btn.disabled = false;
+    const original = btn.dataset.originalText;
+    if (typeof original === 'string' && original) btn.textContent = original;
+    delete btn.dataset.originalText;
+  }
+}
+
 function setMsg(texto, esError) {
   if (!msg) return;
   msg.textContent = texto;
@@ -485,12 +592,63 @@ function renderEstado(user) {
     const nombre = user.displayName || user.email || 'Usuario';
     estado.textContent = `Sesión iniciada como ${nombre}`;
     if (bloqueCrearPost) bloqueCrearPost.style.display = 'block';
+    if (btnOpenModal) btnOpenModal.style.display = 'inline-flex';
     if (form) form.style.display = 'block';
   } else {
     estado.textContent = 'No has iniciado sesión.';
     if (bloqueCrearPost) bloqueCrearPost.style.display = 'none';
+    if (btnOpenModal) btnOpenModal.style.display = 'none';
     if (form) form.style.display = 'none';
   }
+}
+
+function isModalOpen() {
+  return modalCrearPost?.classList.contains('is-open');
+}
+
+function openModal() {
+  if (!modalCrearPost) return;
+  lastActiveElement = document.activeElement;
+  modalCrearPost.classList.add('is-open');
+  modalCrearPost.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  const focusable = modalCrearPost.querySelector('input, textarea, select, button');
+  if (focusable instanceof HTMLElement) focusable.focus();
+}
+
+function closeModal() {
+  if (!modalCrearPost) return;
+  modalCrearPost.classList.remove('is-open');
+  modalCrearPost.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  if (lastActiveElement instanceof HTMLElement) lastActiveElement.focus();
+  lastActiveElement = null;
+
+  if (imagePreview) {
+    imagePreview.hidden = true;
+    imagePreview.removeAttribute('src');
+  }
+  if (previewObjectUrl) {
+    URL.revokeObjectURL(previewObjectUrl);
+    previewObjectUrl = null;
+  }
+  if (imageFileInput) imageFileInput.value = '';
+}
+
+if (btnOpenModal && modalCrearPost) {
+  btnOpenModal.addEventListener('click', () => openModal());
+
+  modalCrearPost.addEventListener('click', (ev) => {
+    const t = ev.target;
+    if (t instanceof Element && t.closest('[data-close-modal]')) closeModal();
+  });
+
+  window.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' && isModalOpen()) {
+      ev.preventDefault();
+      closeModal();
+    }
+  });
 }
 
 function renderPosts(items) {
@@ -605,22 +763,30 @@ async function cargarPosts() {
     );
 
     const snap = await getDocs(q);
-    allItems = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    const publicItems = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 
-    if (!allItems.length && user) {
-      const qMine = query(
-        collection(db, 'posts'),
-        where('authorUid', '==', user.uid)
-      );
+    if (user) {
+      const qMine = query(collection(db, 'posts'), where('authorUid', '==', user.uid));
       const mineSnap = await getDocs(qMine);
       const mine = mineSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      const byId = new Map();
+      for (const it of publicItems) byId.set(it.id, it);
+      for (const it of mine) byId.set(it.id, it);
+      allItems = Array.from(byId.values());
+
       const toDate = (v) => (v?.toDate?.() ? v.toDate() : v instanceof Date ? v : null);
-      mine.sort((a, b) => (toDate(b.createdAt)?.getTime?.() || 0) - (toDate(a.createdAt)?.getTime?.() || 0));
-      allItems = mine;
-      if (allItems.length) {
-        setMsg('No hay posts publicados aún. Mostrando tus borradores.', true);
-      } else {
-        setMsg('No hay posts publicados aún. Crea uno arriba y marca "Publicado" para que aparezca aquí.', true);
+      allItems.sort((a, b) => (toDate(b.createdAt)?.getTime?.() || 0) - (toDate(a.createdAt)?.getTime?.() || 0));
+
+      const hasMineNonPublic = mine.some((it) => postVisibility(it) !== 'public');
+      if (!publicItems.length && mine.length) {
+        setMsg('No hay posts públicos aún. Mostrando tus posts.', true);
+      } else if (hasMineNonPublic) {
+        setMsg('Mostrando posts públicos y tus posts (incluye ocultos/privados).', false);
+      }
+    } else {
+      allItems = publicItems;
+      if (!allItems.length) {
+        setMsg('No hay posts públicos aún.', true);
       }
     }
 
@@ -683,9 +849,16 @@ if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    if (isSubmittingPost) return;
+
     const title = form.elements['title']?.value?.trim() || '';
     const content = form.elements['content']?.value?.trim() || '';
-    const published = form.elements['published']?.checked || false;
+    const visibility = normVisibility(form.elements['visibility']?.value);
+    const published = visibility === 'public';
+    const imageFile = form.elements['imageFile']?.files?.[0] || null;
+    const rawTags = form.elements['tags']?.value?.trim() || '';
+    const tags = rawTags ? uniqTags(rawTags.split(',')).slice(0, 10) : [];
+    const slug = slugify(title);
 
     const user = auth.currentUser;
     if (!user) {
@@ -693,26 +866,93 @@ if (form) {
       return;
     }
 
-    if (!title || !content) {
-      setMsg('Título y contenido son obligatorios.', true);
+    if (title.length < 4) {
+      setMsg('El títol és obligatori (mínim 4 caràcters).', true);
+      return;
+    }
+
+    if (content.length < 20) {
+      setMsg('El contingut és obligatori (mínim 20 caràcters).', true);
+      return;
+    }
+
+    if (imageFile) {
+      const maxBytes = 5 * 1024 * 1024;
+      const isImage = typeof imageFile.type === 'string' && imageFile.type.startsWith('image/');
+      if (!isImage) {
+        setMsg('La imatge ha de ser un fitxer d\'imatge (JPG/PNG/WebP).', true);
+        return;
+      }
+      if (imageFile.size > maxBytes) {
+        setMsg('La imatge és massa gran (màxim 5MB).', true);
+        return;
+      }
+    }
+
+    if (!tags.length && rawTags) {
+      setMsg('Les etiquetes no són vàlides. Ex: tech, gaming, xarxa', true);
       return;
     }
 
     try {
-      setMsg('Publicando...', false);
+      isSubmittingPost = true;
+      setPublishUi(true);
+      setMsg('Publicant...', false);
+
+      let imageUrl = null;
+      if (imageFile) {
+        const safeName = String(imageFile.name || 'image')
+          .replace(/[^a-z0-9._-]+/gi, '_')
+          .slice(0, 80);
+        const path = `posts/${user.uid}/${Date.now()}_${safeName}`;
+        const imgRef = storageRef(storage, path);
+
+        const task = uploadBytesResumable(imgRef, imageFile);
+        imageUrl = await new Promise((resolve, reject) => {
+          task.on(
+            'state_changed',
+            (snap) => {
+              const total = snap.totalBytes || 0;
+              const done = snap.bytesTransferred || 0;
+              const pct = total ? Math.round((done / total) * 100) : 0;
+              setMsg(`Pujant imatge… ${pct}%`, false);
+            },
+            (err) => reject(err),
+            async () => {
+              try {
+                const url = await getDownloadURL(task.snapshot.ref);
+                resolve(url);
+              } catch (err) {
+                reject(err);
+              }
+            }
+          );
+        });
+      }
+
       await addDoc(collection(db, 'posts'), {
         title,
+        slug,
         content,
         authorUid: user.uid,
         published,
+        visibility,
+        imageUrl,
+        tags,
         createdAt: serverTimestamp()
       });
 
       form.reset();
+      closeModal();
       setMsg('Post creado.', false);
       await cargarPosts();
     } catch (err) {
-      setMsg('No se pudo crear el post.', true);
+      const code = err?.code ? ` (${err.code})` : '';
+      console.error(err);
+      setMsg(`No s'ha pogut crear el post.${code}`, true);
+    } finally {
+      isSubmittingPost = false;
+      setPublishUi(false);
     }
   });
 }

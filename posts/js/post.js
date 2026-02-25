@@ -1,6 +1,7 @@
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-import { db } from './../../js/firebase.js';
+import { auth, db } from './../../js/firebase.js';
 
 const detalle = document.getElementById('postDetalle');
 const msg = document.getElementById('msgPost');
@@ -10,6 +11,18 @@ function setMsg(texto, esError) {
   if (!msg) return;
   msg.textContent = texto;
   msg.dataset.tipo = esError ? 'error' : 'ok';
+}
+
+function normVisibility(v) {
+  const s = String(v || '').trim().toLowerCase();
+  if (s === 'public' || s === 'unlisted' || s === 'private') return s;
+  return 'public';
+}
+
+function postVisibility(post) {
+  if (post?.visibility) return normVisibility(post.visibility);
+  if (typeof post?.published === 'boolean') return post.published ? 'public' : 'private';
+  return 'public';
 }
 
 const params = new URLSearchParams(window.location.search);
@@ -100,7 +113,7 @@ function renderPost(data) {
   detalle.appendChild(p);
 }
 
-async function main() {
+async function main(user) {
   if (!id) {
     setMsg('Falta el id del post.', true);
     return;
@@ -123,10 +136,21 @@ async function main() {
       setMsg('Post no encontrado.', true);
       return;
     }
-    renderPost({ id: snap.id, ...snap.data() });
+    const data = { id: snap.id, ...snap.data() };
+    const vis = postVisibility(data);
+    if (vis === 'private') {
+      const uid = user?.uid || '';
+      if (!uid || data.authorUid !== uid) {
+        setMsg('Este post es privado.', true);
+        return;
+      }
+    }
+    renderPost(data);
   } catch {
     setMsg('Error cargando el post.', true);
   }
 }
 
-main();
+onAuthStateChanged(auth, async (user) => {
+  await main(user);
+});
