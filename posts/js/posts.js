@@ -432,6 +432,22 @@ function slugify(text) {
   return s || 'post';
 }
 
+function withTimeout(promise, ms, label) {
+  let t = null;
+  const timeout = new Promise((_, reject) => {
+    t = setTimeout(() => {
+      reject(new Error(`timeout:${label}`));
+    }, ms);
+  });
+
+  return Promise.race([
+    promise.finally(() => {
+      if (t) clearTimeout(t);
+    }),
+    timeout
+  ]);
+}
+
 function normVisibility(v) {
   const s = String(v || '').trim().toLowerCase();
   if (s === 'public' || s === 'unlisted' || s === 'private') return s;
@@ -570,7 +586,7 @@ function setPublishUi(isPublishing) {
   if (!(btn instanceof HTMLButtonElement)) return;
   if (isPublishing) {
     btn.disabled = true;
-    btn.dataset.originalText = btn.textContent || '';
+    if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent || '';
     btn.textContent = 'Publicant…';
   } else {
     btn.disabled = false;
@@ -908,7 +924,8 @@ if (form) {
         const imgRef = storageRef(storage, path);
 
         const task = uploadBytesResumable(imgRef, imageFile);
-        imageUrl = await new Promise((resolve, reject) => {
+
+        const uploadPromise = new Promise((resolve, reject) => {
           task.on(
             'state_changed',
             (snap) => {
@@ -928,9 +945,20 @@ if (form) {
             }
           );
         });
+
+        try {
+          imageUrl = await withTimeout(uploadPromise, 45000, 'storage-upload');
+        } catch (err) {
+          try {
+            task.cancel();
+          } catch {
+            // ignore
+          }
+          throw err;
+        }
       }
 
-      await addDoc(collection(db, 'posts'), {
+      await withTimeout(addDoc(collection(db, 'posts'), {
         title,
         slug,
         content,
@@ -940,16 +968,25 @@ if (form) {
         imageUrl,
         tags,
         createdAt: serverTimestamp()
-      });
+      }), 15000, 'firestore-addDoc');
 
       form.reset();
       closeModal();
       setMsg('Post creado.', false);
-      await cargarPosts();
+      await withTimeout(cargarPosts(), 15000, 'reload-posts');
     } catch (err) {
       const code = err?.code ? ` (${err.code})` : '';
       console.error(err);
-      setMsg(`No s'ha pogut crear el post.${code}`, true);
+      const msgErr = String(err?.message || '');
+      if (msgErr.startsWith('timeout:storage-upload')) {
+        setMsg("La pujada de la imatge s'ha quedat penjada (timeout). Revisa Storage Rules o la connexió.", true);
+      } else if (msgErr.startsWith('timeout:firestore-addDoc')) {
+        setMsg("Guardant el post s'ha quedat penjat (timeout). Revisa Firestore Rules o la connexió.", true);
+      } else if (msgErr.startsWith('timeout:reload-posts')) {
+        setMsg('Post creat, però ha fallat recarregar la llista (timeout). Refresca la pàgina.', true);
+      } else {
+        setMsg(`No s'ha pogut crear el post.${code}`, true);
+      }
     } finally {
       isSubmittingPost = false;
       setPublishUi(false);
