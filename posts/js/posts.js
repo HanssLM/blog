@@ -633,7 +633,7 @@ function closeModal() {
     URL.revokeObjectURL(previewObjectUrl);
     previewObjectUrl = null;
   }
-  if (imageFileInput) imageFileInput.value = '';
+  if (imageUrlInput) imageUrlInput.value = '';
 }
 
 if (btnOpenModal && modalCrearPost) {

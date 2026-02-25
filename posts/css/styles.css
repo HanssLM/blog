@@ -630,7 +630,73 @@ nav {
   display: block;
 }
 
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 1000;
+}
+
+.modal.is-open {
+  display: flex;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.modal-dialog {
+  position: relative;
+  width: min(760px, 92vw);
+  max-height: min(86vh, 900px);
+  overflow: auto;
+  border-radius: 1rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  box-shadow: 0 26px 80px rgba(15, 23, 42, 0.22);
+  padding: 1rem;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.modal-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.6);
+}
+
+.modal-close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.6rem;
+}
+
+.modal-close:hover {
+  background: rgba(15, 23, 42, 0.06);
+}
+
 .form-post input[type="text"],
+.form-post input[type="url"],
 .form-post textarea {
   width: 100%;
   font-size: 1rem;
@@ -643,11 +709,13 @@ nav {
 }
 
 .form-post input[type="text"]::placeholder,
+.form-post input[type="url"]::placeholder,
 .form-post textarea::placeholder {
   color: rgba(15, 23, 42, 0.55);
 }
 
 .form-post input[type="text"]:focus,
+.form-post input[type="url"]:focus,
 .form-post textarea:focus {
   border-color: rgba(37, 99, 235, 0.55);
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
