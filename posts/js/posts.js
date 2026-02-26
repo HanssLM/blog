@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 import {
   addDoc,
   collection,
@@ -28,9 +28,11 @@ const btnOpenModal = document.getElementById('btnOpenModal');
 const modalCrearPost = document.getElementById('crearPostModal');
 let lastActiveElement = null;
 
-const btnPerfilMenu = document.getElementById('btnPerfilMenu');
-const menuPerfil = document.getElementById('menuPerfil');
-const btnLogout = document.getElementById('btnLogout');
+const navAuthLogged = document.getElementById('navAuthLogged');
+const navAuthGuest = document.getElementById('navAuthGuest');
+const navUserName = document.getElementById('navUserName');
+const navAvatarImg = document.getElementById('navAvatarImg');
+const navAvatarFallback = document.getElementById('navAvatarFallback');
 
 const imageUrlInput = document.getElementById('imageUrl');
 const imagePreview = document.getElementById('imagePreview');
@@ -596,11 +598,39 @@ function renderEstado(user) {
   if (user) {
     const nombre = user.displayName || user.email || 'Usuario';
     estado.textContent = `Sesión iniciada como ${nombre}`;
+
+    if (navAuthLogged) navAuthLogged.hidden = false;
+    if (navAuthGuest) navAuthGuest.hidden = true;
+    if (navUserName) navUserName.textContent = user.displayName || user.email || 'Perfil';
+
+    const photoUrl = typeof user.photoURL === 'string' ? user.photoURL : '';
+    if (navAvatarImg && navAvatarFallback) {
+      if (photoUrl) {
+        navAvatarImg.src = photoUrl;
+        navAvatarImg.hidden = false;
+        navAvatarFallback.hidden = true;
+      } else {
+        navAvatarImg.hidden = true;
+        navAvatarImg.removeAttribute('src');
+        navAvatarFallback.hidden = false;
+      }
+    }
+
     if (bloqueCrearPost) bloqueCrearPost.style.display = 'block';
     if (btnOpenModal) btnOpenModal.style.display = 'inline-flex';
     if (form) form.style.display = 'block';
   } else {
     estado.textContent = 'No has iniciado sesión.';
+
+    if (navAuthLogged) navAuthLogged.hidden = true;
+    if (navAuthGuest) navAuthGuest.hidden = false;
+    if (navUserName) navUserName.textContent = 'Perfil';
+    if (navAvatarImg) {
+      navAvatarImg.hidden = true;
+      navAvatarImg.removeAttribute('src');
+    }
+    if (navAvatarFallback) navAvatarFallback.hidden = false;
+
     if (bloqueCrearPost) bloqueCrearPost.style.display = 'none';
     if (btnOpenModal) btnOpenModal.style.display = 'none';
     if (form) form.style.display = 'none';
@@ -640,53 +670,6 @@ function closeModal() {
     previewObjectUrl = null;
   }
   if (imageUrlInput) imageUrlInput.value = '';
-}
-
-function setPerfilMenuOpen(isOpen) {
-  if (!btnPerfilMenu || !menuPerfil) return;
-  btnPerfilMenu.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  menuPerfil.hidden = !isOpen;
-}
-
-function isPerfilMenuOpen() {
-  return !menuPerfil?.hidden;
-}
-
-if (btnPerfilMenu && menuPerfil) {
-  setPerfilMenuOpen(false);
-
-  btnPerfilMenu.addEventListener('click', (ev) => {
-    ev.preventDefault();
-    setPerfilMenuOpen(!isPerfilMenuOpen());
-  });
-
-  document.addEventListener('click', (ev) => {
-    const t = ev.target;
-    if (!(t instanceof Node)) return;
-    if (!isPerfilMenuOpen()) return;
-    if (btnPerfilMenu.contains(t) || menuPerfil.contains(t)) return;
-    setPerfilMenuOpen(false);
-  });
-
-  window.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Escape' && isPerfilMenuOpen()) {
-      ev.preventDefault();
-      setPerfilMenuOpen(false);
-      btnPerfilMenu.focus();
-    }
-  });
-}
-
-if (btnLogout) {
-  btnLogout.addEventListener('click', async () => {
-    try {
-      await signOut(auth);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      window.location.href = './../login/login.html';
-    }
-  });
 }
 
 if (btnOpenModal && modalCrearPost) {
