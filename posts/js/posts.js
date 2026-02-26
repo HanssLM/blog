@@ -1,15 +1,42 @@
-import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-import {
-  addDoc,
-  collection,
-  getDocs,
-  orderBy,
-  query,
-  serverTimestamp,
-  where
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+let onAuthStateChanged;
+let addDoc;
+let collection;
+let getDocs;
+let orderBy;
+let query;
+let serverTimestamp;
+let where;
 
-import { auth, db } from './../../js/firebase.js';
+let auth;
+let db;
+
+let firebaseLoadPromise = null;
+
+async function ensureFirebaseLoaded() {
+  if (USE_MOCK) return;
+  if (firebaseLoadPromise) return firebaseLoadPromise;
+
+  firebaseLoadPromise = (async () => {
+    const authMod = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js');
+    const fsMod = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+    const localMod = await import('./../../js/firebase.js');
+
+    onAuthStateChanged = authMod.onAuthStateChanged;
+
+    addDoc = fsMod.addDoc;
+    collection = fsMod.collection;
+    getDocs = fsMod.getDocs;
+    orderBy = fsMod.orderBy;
+    query = fsMod.query;
+    serverTimestamp = fsMod.serverTimestamp;
+    where = fsMod.where;
+
+    auth = localMod.auth;
+    db = localMod.db;
+  })();
+
+  return firebaseLoadPromise;
+}
 
 const estado = document.getElementById('estadoAuth');
 const lista = document.getElementById('listaPosts');
@@ -787,20 +814,22 @@ function renderPosts(items) {
   }
 }
 
-async function cargarPosts() {
+async function cargarPosts(user) {
   if (USE_MOCK) {
-    allItems = MOCK_POSTS;
-    populateTagOptions();
-    applyFilters();
+    allItems = MOCK_POSTS.map((p) => ({ ...p }));
     currentPageSize = getPageSize();
     currentPage = 1;
-    renderCurrentPage();
-    setMsg('Mostrando posts de ejemplo (mock).', false);
+    applyFilters();
     return;
   }
 
+  await withTimeout(ensureFirebaseLoaded(), 15000, 'firebase-load');
+  await cargarPostsFirestore(user);
+}
+
+async function cargarPostsFirestore(user) {
   try {
-    const user = auth.currentUser;
+    const currentUser = user ?? auth.currentUser;
     const q = query(
       collection(db, 'posts'),
       where('published', '==', true),
@@ -810,8 +839,8 @@ async function cargarPosts() {
     const snap = await getDocs(q);
     const publicItems = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 
-    if (user) {
-      const qMine = query(collection(db, 'posts'), where('authorUid', '==', user.uid));
+    if (currentUser) {
+      const qMine = query(collection(db, 'posts'), where('authorUid', '==', currentUser.uid));
       const mineSnap = await getDocs(qMine);
       const mine = mineSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
       const byId = new Map();
@@ -884,10 +913,26 @@ if (USE_MOCK) {
   renderEstado(null);
   cargarPosts();
 } else {
-  onAuthStateChanged(auth, async (user) => {
-    renderEstado(user);
-    await cargarPosts();
-  });
+  // Defer Firebase load so it doesn't delay DOMContentLoaded
+  const startAuth = async () => {
+    try {
+      await withTimeout(ensureFirebaseLoaded(), 15000, 'firebase-load');
+      onAuthStateChanged(auth, async (user) => {
+        renderEstado(user);
+        await cargarPosts(user);
+      });
+    } catch (err) {
+      console.error(err);
+      renderEstado(null);
+      setMsg('No s\'ha pogut carregar Firebase (timeout).', true);
+    }
+  };
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => void startAuth(), { timeout: 2000 });
+  } else {
+    setTimeout(() => void startAuth(), 0);
+  }
 }
 
 if (form) {
