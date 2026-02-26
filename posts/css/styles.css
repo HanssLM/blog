@@ -640,6 +640,14 @@ nav {
   color: rgba(15, 23, 42, 0.6);
 }
 
+.modal .form-post label.campo-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.6);
+}
+
 .form-post .campo-label:first-of-type {
   margin-top: 0;
 }
