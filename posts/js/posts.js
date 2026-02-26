@@ -28,9 +28,9 @@ const btnOpenModal = document.getElementById('btnOpenModal');
 const modalCrearPost = document.getElementById('crearPostModal');
 let lastActiveElement = null;
 
+const navAuthChip = document.getElementById('navAuthChip');
 const navAuthLogged = document.getElementById('navAuthLogged');
 const navAuthGuest = document.getElementById('navAuthGuest');
-const navUserName = document.getElementById('navUserName');
 const navAvatarImg = document.getElementById('navAvatarImg');
 const navAvatarFallback = document.getElementById('navAvatarFallback');
 
@@ -599,9 +599,12 @@ function renderEstado(user) {
     const nombre = user.displayName || user.email || 'Usuario';
     estado.textContent = `Sesión iniciada como ${nombre}`;
 
-    if (navAuthLogged) navAuthLogged.hidden = false;
+    if (navAuthChip) navAuthChip.hidden = false;
+    if (navAuthLogged) {
+      navAuthLogged.hidden = false;
+      navAuthLogged.textContent = user.displayName || user.email || 'Perfil';
+    }
     if (navAuthGuest) navAuthGuest.hidden = true;
-    if (navUserName) navUserName.textContent = user.displayName || user.email || 'Perfil';
 
     const photoUrl = typeof user.photoURL === 'string' ? user.photoURL : '';
     if (navAvatarImg && navAvatarFallback) {
@@ -622,9 +625,9 @@ function renderEstado(user) {
   } else {
     estado.textContent = 'No has iniciado sesión.';
 
+    if (navAuthChip) navAuthChip.hidden = false;
     if (navAuthLogged) navAuthLogged.hidden = true;
     if (navAuthGuest) navAuthGuest.hidden = false;
-    if (navUserName) navUserName.textContent = 'Perfil';
     if (navAvatarImg) {
       navAvatarImg.hidden = true;
       navAvatarImg.removeAttribute('src');

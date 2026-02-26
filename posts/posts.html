@@ -30,18 +30,18 @@
             <li><a href="./../login/login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Accedir</a></li>
             <li><a href="./../register/register.html"><i class="fas fa-user-plus"></i>&nbsp;Registre</a></li>
             <li class="nav-auth" aria-label="Compte">
-                <a id="navAuthLogged" class="nav-auth-chip" href="./../login/login.html" hidden>
-                    <span class="nav-auth-avatar">
+                <div id="navAuthChip" class="nav-auth-chip">
+                    <span class="nav-auth-avatar" aria-hidden="true">
                         <img id="navAvatarImg" class="nav-avatar-img" alt="" hidden>
                         <i id="navAvatarFallback" class="fas fa-user-circle" aria-hidden="true"></i>
                     </span>
-                    <span id="navUserName" class="nav-auth-name">Perfil</span>
-                </a>
-                <span id="navAuthGuest" class="nav-auth-guest">
-                    <a class="nav-auth-link" href="./../login/login.html">Iniciar sessió</a>
-                    <span class="nav-auth-sep">|</span>
-                    <a class="nav-auth-link" href="./../register/register.html">Registrarse</a>
-                </span>
+                    <a id="navAuthLogged" class="nav-auth-name" href="./../login/login.html" hidden>Perfil</a>
+                    <span id="navAuthGuest" class="nav-auth-guest">
+                        <a class="nav-auth-link" href="./../login/login.html">Iniciar sessió</a>
+                        <span class="nav-auth-sep">|</span>
+                        <a class="nav-auth-link" href="./../register/register.html">Registrarse</a>
+                    </span>
+                </div>
             </li>
         </ul>
     </nav>
