@@ -526,16 +526,17 @@ header.blog-hero::after {
 .nav-llista,
 .nav-lista {
   list-style-type: none;
-  overflow: hidden;
   width: min(1560px, 100%);
   margin: 0 auto;
   padding: 0.5rem 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
 }
 
 .nav-llista li,
 .nav-lista li {
-  float: inline-start;
-  padding: .35rem .2rem
+  padding: 0.1rem 0.1rem;
 }
 
 .nav-llista li a,
@@ -549,21 +550,21 @@ header.blog-hero::after {
 
 .nav-llista li.nav-auth,
 .nav-lista li.nav-auth {
-  float: right;
+  margin-left: auto;
 }
 
 .nav-auth {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0.25rem 0.15rem;
+  padding: 0.1rem 0.1rem;
 }
 
 .nav-auth-chip {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.25rem 0.45rem;
+  padding: 0.2rem 0.4rem;
   border-radius: 999px;
   text-decoration: none;
   color: rgba(15, 23, 42, 0.92);
@@ -572,20 +573,6 @@ header.blog-hero::after {
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background-color 140ms ease;
-}
-
-.nav-auth-name {
-  text-decoration: none;
-  color: rgba(15, 23, 42, 0.92);
-  font-weight: 800;
-  font-size: 0.85rem;
-  line-height: 1.1;
-}
-
-.nav-auth-chip:hover {
-  transform: translateY(-1px);
-  border-color: rgba(37, 99, 235, 0.28);
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10), 0 18px 40px rgba(15, 23, 42, 0.10);
 }
 
 .nav-auth-chip:focus-visible {
@@ -609,7 +596,7 @@ header.blog-hero::after {
 }
 
 .nav-auth-avatar i {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
 }
 
 .nav-avatar-img {
@@ -622,11 +609,11 @@ header.blog-hero::after {
 .nav-auth-guest {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.55rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.35);
-  border: 1px solid rgba(15, 23, 42, 0.10);
+  gap: 0.35rem;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
 }
 
 .nav-auth-link {
