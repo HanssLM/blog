@@ -29,6 +29,19 @@
             <li><a href="./../contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contacte</a></li>
             <li><a href="./../login/login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Accedir</a></li>
             <li><a href="./../register/register.html"><i class="fas fa-user-plus"></i>&nbsp;Registre</a></li>
+            <li class="nav-perfil">
+                <button id="btnPerfilMenu" class="nav-perfil-toggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="menuPerfil">
+                    <i class="fas fa-user-circle"></i>&nbsp;Perfil
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div id="menuPerfil" class="nav-dropdown" role="menu" aria-label="Perfil" hidden>
+                    <button type="button" class="nav-dropdown-item" role="menuitem">Perfil</button>
+                    <button type="button" class="nav-dropdown-item" role="menuitem">Editar perfil</button>
+                    <button type="button" class="nav-dropdown-item" role="menuitem">Ajustes</button>
+                    <button type="button" class="nav-dropdown-item" role="menuitem">Ayuda</button>
+                    <button id="btnLogout" type="button" class="nav-dropdown-item" role="menuitem">Logout</button>
+                </div>
+            </li>
         </ul>
     </nav>
     <main>

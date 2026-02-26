@@ -1,4 +1,4 @@
-import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 import {
   addDoc,
   collection,
@@ -27,6 +27,10 @@ const btnClearSearch = document.getElementById('btnClearSearch');
 const btnOpenModal = document.getElementById('btnOpenModal');
 const modalCrearPost = document.getElementById('crearPostModal');
 let lastActiveElement = null;
+
+const btnPerfilMenu = document.getElementById('btnPerfilMenu');
+const menuPerfil = document.getElementById('menuPerfil');
+const btnLogout = document.getElementById('btnLogout');
 
 const imageUrlInput = document.getElementById('imageUrl');
 const imagePreview = document.getElementById('imagePreview');
@@ -636,6 +640,53 @@ function closeModal() {
     previewObjectUrl = null;
   }
   if (imageUrlInput) imageUrlInput.value = '';
+}
+
+function setPerfilMenuOpen(isOpen) {
+  if (!btnPerfilMenu || !menuPerfil) return;
+  btnPerfilMenu.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  menuPerfil.hidden = !isOpen;
+}
+
+function isPerfilMenuOpen() {
+  return !menuPerfil?.hidden;
+}
+
+if (btnPerfilMenu && menuPerfil) {
+  setPerfilMenuOpen(false);
+
+  btnPerfilMenu.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    setPerfilMenuOpen(!isPerfilMenuOpen());
+  });
+
+  document.addEventListener('click', (ev) => {
+    const t = ev.target;
+    if (!(t instanceof Node)) return;
+    if (!isPerfilMenuOpen()) return;
+    if (btnPerfilMenu.contains(t) || menuPerfil.contains(t)) return;
+    setPerfilMenuOpen(false);
+  });
+
+  window.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' && isPerfilMenuOpen()) {
+      ev.preventDefault();
+      setPerfilMenuOpen(false);
+      btnPerfilMenu.focus();
+    }
+  });
+}
+
+if (btnLogout) {
+  btnLogout.addEventListener('click', async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      window.location.href = './../login/login.html';
+    }
+  });
 }
 
 if (btnOpenModal && modalCrearPost) {

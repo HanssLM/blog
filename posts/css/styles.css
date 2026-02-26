@@ -555,6 +555,76 @@ header.blog-hero::after {
   background: rgba(15, 23, 42, 0.06);
 }
 
+.nav-perfil {
+  float: inline-end;
+  position: relative;
+}
+
+.nav-perfil-toggle {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(15, 23, 42, 0.92);
+  text-align: center;
+  padding: 0.65rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.nav-perfil-toggle:hover {
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.nav-perfil-toggle:focus-visible {
+  outline: 0.18rem solid rgba(0, 0, 0, 0.35);
+  outline-offset: 0.18rem;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  min-width: 220px;
+  padding: 0.45rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 26px 80px rgba(15, 23, 42, 0.16);
+  backdrop-filter: blur(14px);
+  z-index: 20;
+}
+
+.nav-dropdown[hidden] {
+  display: none;
+}
+
+.nav-dropdown-item {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  color: rgba(15, 23, 42, 0.92);
+  font-size: 0.95rem;
+}
+
+.nav-dropdown-item:hover {
+  background: rgba(37, 99, 235, 0.10);
+}
+
+.nav-dropdown-item:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16);
+}
+
 .nav-llista li a:focus-visible,
 .nav-lista li a:focus-visible {
   outline: 0.18rem solid rgba(0, 0, 0, 0.35);
