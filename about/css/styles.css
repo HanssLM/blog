@@ -38,6 +38,34 @@ header {
     text-decoration: none;
 }
 
+i.fab.fa-instagram {
+    background: radial-gradient(circle at 30% 110%,
+            #fdf497 0%,
+            #fd5949 35%,
+            #d6249f 60%,
+            #285AEB 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+i.fab.fa-tiktok {
+    background: linear-gradient(135deg,
+            #25F4EE 0%,
+            #25F4EE 25%,
+            #111827 50%,
+            #FE2C55 75%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+i.fab.fa-twitter {
+    color: #1DA1F2;
+}
+
 main {
     flex-grow: 1;
     padding: 1.25em;
@@ -68,7 +96,8 @@ main h3 {
     margin-top: 1em;
 }
 
-.taula-xarxes th, .taula-xarxes td {
+.taula-xarxes th,
+.taula-xarxes td {
     border: 0.1em solid #ccc;
     padding: 0.5em;
     text-align: left;
