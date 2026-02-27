@@ -631,7 +631,7 @@ header.blog-hero::after {
   border: 0;
   background: transparent;
   color: rgba(15, 23, 42, 0.92);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
   line-height: 1.1;
@@ -709,7 +709,8 @@ header.blog-hero::after {
 }
 
 .nav-principal .nav-auth-link:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  box-shadow: 0 0 0 4px rgba(29, 97, 241, 0.25);
 }
 
 .nav-principal .nav-auth-avatar {
