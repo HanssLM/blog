@@ -1,4 +1,5 @@
 let onAuthStateChanged;
+let signOut;
 let addDoc;
 let collection;
 let getDocs;
@@ -22,6 +23,7 @@ async function ensureFirebaseLoaded() {
     const localMod = await import('./../../js/firebase.js');
 
     onAuthStateChanged = authMod.onAuthStateChanged;
+    signOut = authMod.signOut;
 
     addDoc = fsMod.addDoc;
     collection = fsMod.collection;
@@ -85,6 +87,8 @@ const navAuthAvatar = document.getElementById('navAuthAvatar');
 const navAuthLogged = document.getElementById('navAuthLogged');
 const navAuthGuest = document.getElementById('navAuthGuest');
 const navAvatarFallback = document.getElementById('navAvatarFallback');
+const navAuthMenu = document.getElementById('navAuthMenu');
+const btnNavLogout = document.getElementById('btnNavLogout');
 
 let navAvatarImg = null;
 
@@ -112,6 +116,25 @@ function removeNavAvatarImg() {
     navAvatarImg.parentNode.removeChild(navAvatarImg);
   }
   navAvatarImg = null;
+}
+
+function isAuthMenuOpen() {
+  return !!navAuthMenu && !navAuthMenu.hasAttribute('hidden');
+}
+
+function openAuthMenu() {
+  if (!navAuthMenu) return;
+  navAuthMenu.removeAttribute('hidden');
+}
+
+function closeAuthMenu() {
+  if (!navAuthMenu) return;
+  navAuthMenu.setAttribute('hidden', '');
+}
+
+function toggleAuthMenu() {
+  if (isAuthMenuOpen()) closeAuthMenu();
+  else openAuthMenu();
 }
 
 const imageUrlInput = document.getElementById('imageUrl');
@@ -717,6 +740,52 @@ function renderEstado(user) {
     if (btnOpenModal) btnOpenModal.style.display = 'inline-flex';
     if (form) form.style.display = 'block';
   }
+
+  closeAuthMenu();
+}
+
+if (navAuthChip) {
+  navAuthChip.addEventListener('click', (e) => {
+    const target = e.target;
+    const user = auth?.currentUser;
+    if (!user) return;
+
+    if (navAuthGuest && navAuthGuest.contains(target)) return;
+    if (target instanceof HTMLElement && target.closest('#navAuthMenu')) return;
+
+    e.preventDefault();
+    toggleAuthMenu();
+  });
+}
+
+document.addEventListener('click', (e) => {
+  if (!isAuthMenuOpen()) return;
+  const t = e.target;
+  if (!(t instanceof Node)) return;
+  if (navAuthChip && navAuthChip.contains(t)) return;
+  closeAuthMenu();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if (!isAuthMenuOpen()) return;
+  closeAuthMenu();
+});
+
+if (btnNavLogout) {
+  btnNavLogout.addEventListener('click', async () => {
+    try {
+      if (!USE_MOCK) {
+        await ensureFirebaseLoaded();
+        if (auth && signOut) await signOut(auth);
+      }
+    } catch (err) {
+      console.error(err);
+      setMsg("No s'ha pogut tancar la sessió.", true);
+    } finally {
+      closeAuthMenu();
+    }
+  });
 }
 
 function isModalOpen() {
