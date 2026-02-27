@@ -865,9 +865,15 @@ function renderPosts(items) {
     if (data.imageUrl) {
       const img = document.createElement('img');
       img.className = 'post-cover';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      try {
+        img.fetchPriority = 'low';
+      } catch {
+        // ignore
+      }
       img.src = data.imageUrl;
       img.alt = '';
-      img.loading = 'lazy';
       art.appendChild(img);
     }
 
