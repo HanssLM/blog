@@ -30,7 +30,6 @@
             <li class="nav-auth" aria-label="Compte">
                 <div id="navAuthChip" class="nav-auth-chip">
                     <span id="navAuthAvatar" class="nav-auth-avatar" aria-hidden="true">
-                        <img id="navAvatarImg" class="nav-avatar-img" alt="" hidden>
                         <i id="navAvatarFallback" class="fas fa-user-circle" aria-hidden="true"></i>
                     </span>
                     <a id="navAuthLogged" class="nav-auth-name" href="./../login/login.html" hidden>Perfil</a>
@@ -161,6 +160,26 @@
                             <button type="submit" class="btn-publicar">Publicar</button>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <div id="authRequiredModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="authModalTitulo" aria-hidden="true" style="display:none">
+                <div class="modal-overlay" data-close-auth-modal></div>
+                <div class="modal-dialog auth-required-dialog" role="document">
+                    <header class="modal-header">
+                        <div>
+                            <p class="modal-kicker">Accés requerit</p>
+                            <h2 id="authModalTitulo">Inicia sessió</h2>
+                        </div>
+                        <button class="modal-close" type="button" aria-label="Cerrar" data-close-auth-modal>&times;</button>
+                    </header>
+                    <div class="auth-required-body">
+                        <p class="auth-required-text">Has de iniciar sessió per a poder crear una publicació.</p>
+                        <div class="auth-required-actions">
+                            <a class="auth-required-btn auth-required-btn-primary" href="./../login/login.html">Iniciar sessió</a>
+                            <a class="auth-required-btn auth-required-btn-ghost" href="./../register/register.html">Registrarse</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
