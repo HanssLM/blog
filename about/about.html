@@ -9,12 +9,18 @@
     <meta name="author" content="Hans Lao Moncusi">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./../LAYOUT/structure/columns.css">
+    <link rel="stylesheet" href="./../LAYOUT/structure/height.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-    <header>
-        <h1>About</h1>
+    <header class="blog-hero">
+        <div class="hero-inner">
+            <p class="hero-kicker">Sobre mi</p>
+            <h1 class="hero-title">TechInPulse</h1>
+            <p class="hero-subtitle">Tecnologia en el pols. Coneix qui hi ha darrere del projecte.</p>
+        </div>
     </header>
     <nav>
         <ul class="barra-nav">
@@ -26,42 +32,117 @@
         </ul>
     </nav>
     <main>
-        <div class="equip">
-            <div class="persona">
-                <h3>Hans</h3>
-                <p>Estudiant de CFGM SMX 1r. Apassionat per la programació FullStack i el món del hardware. M'encanta
-                    muntar ordinadors personalitzats i experimentar amb configuracions avançades. Gaudeixo aprenent
-                    noves tecnologies i buscant sempre el millor rendiment tant en software com en hardware.</p>
-                <ul class="interessos">
-                    <li>Desenvolupament web i aplicacions FullStack</li>
-                    <li>Muntatge de PCs custom</li>
-                    <li>Optimització de components</li>
-                    <li>Refrigeració líquida i overclocking</li>
-                    <li>Comparatives de processadors i targetes gràfiques</li>
-                </ul>
-                <table class="taula-xarxes">
-                    <tr>
-                        <th colspan="2">Xarxes Socials:</th>
-                    </tr>
-                    <tr>
-                        <th><i class="fab fa-instagram"></i></th>
-                        <td>@luz.en.foco</td>
-                    </tr>
-                    <tr>
-                        <th><i class="fab fa-tiktok"></i></th>
-                        <td>@bailaNova25</td>
-                    </tr>
-                    <tr>
-                        <th><i class="fab fa-twitter"></i></th>
-                        <td>@NovaPresente</td>
-                    </tr>
-                </table>
+        <div class="container">
+            <div class="about-grid row">
+                <section class="col-8 md-col-12 sm-col-12">
+                    <article class="about-card about-card-hero">
+                        <div class="about-hero">
+                            <img class="about-avatar" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=360&q=80" alt="Foto de perfil">
+                            <div class="about-hero-text">
+                                <h2 class="about-name">Hans Lao Moncusi</h2>
+                                <p class="about-role">Front-End · Hardware · Software</p>
+                                <p class="about-bio">Estudiant de CFGM SMX. Apassionat per la programació FullStack i el món del hardware. M'encanta muntar ordinadors personalitzats i experimentar amb configuracions avançades. Gaudeixo aprenent noves tecnologies i buscant sempre el millor rendiment tant en software com en hardware.</p>
+                                <div class="about-actions">
+                                    <a class="about-btn about-btn-primary" href="./../contact/contact.html">Contacte</a>
+                                    <a class="about-btn about-btn-ghost" href="./../posts/posts.html">Veure posts</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="about-section-kicker">Dades ràpides</p>
+                        <div class="about-stats">
+                            <div class="about-stat">
+                                <div class="about-stat-value">+12</div>
+                                <div class="about-stat-label">Articles i guies</div>
+                            </div>
+                            <div class="about-stat">
+                                <div class="about-stat-value">3</div>
+                                <div class="about-stat-label">Àrees de focus</div>
+                            </div>
+                            <div class="about-stat">
+                                <div class="about-stat-value">2025</div>
+                                <div class="about-stat-label">Inici del projecte</div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <aside class="col-4 md-col-12 sm-col-12">
+                    <div class="about-stack">
+                        <article class="about-card">
+                            <h3 class="about-card-title">Xarxes</h3>
+                            <ul class="about-socials" aria-label="Xarxes socials">
+                                <li class="about-social">
+                                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                                    <span class="about-social-handle">@LoremIpsum123</span>
+                                </li>
+                                <li class="about-social">
+                                    <i class="fab fa-tiktok" aria-hidden="true"></i>
+                                    <span class="about-social-handle">@LoremIpsum123</span>
+                                </li>
+                                <li class="about-social">
+                                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                                    <span class="about-social-handle">@LoremIpsum123</span>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article class="about-card">
+                            <h3 class="about-card-title">Interessos</h3>
+                            <div class="about-tags" aria-label="Interessos">
+                                <span class="about-tag">Muntatge de PC</span>
+                                <span class="about-tag">Overclocking</span>
+                                <span class="about-tag">Desenvolupament web</span>
+                                <span class="about-tag">Disseny UI/UX</span>
+                                <span class="about-tag">Optimització</span>
+                            </div>
+                        </article>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="about-grid row">
+                <section class="col-6 md-col-12 sm-col-12">
+                    <article class="about-card">
+                        <h3 class="about-card-title">Habilitats</h3>
+                        <p class="about-muted">Tecnologies i àrees on estic més còmode, amb marge per seguir millorant cada setmana.</p>
+                        <div class="about-skill">
+                            <div class="about-skill-top"><span>HTML/CSS</span><span class="about-skill-pct">85%</span></div>
+                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell HTML i CSS" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><span style="width:85%"></span></div>
+                        </div>
+                        <div class="about-skill">
+                            <div class="about-skill-top"><span>UI/UX</span><span class="about-skill-pct">65%</span></div>
+                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell UI i UX" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"><span style="width:65%"></span></div>
+                        </div>
+                        <div class="about-skill">
+                            <div class="about-skill-top"><span>JavaScript</span><span class="about-skill-pct">75%</span></div>
+                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell JavaScript" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><span style="width:75%"></span></div>
+                        </div>
+                        <div class="about-skill">
+                            <div class="about-skill-top"><span>Firebase</span><span class="about-skill-pct">70%</span></div>
+                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell Firebase" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"><span style="width:70%"></span></div>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="col-6 md-col-12 sm-col-12">
+                    <article class="about-card">
+                        <h3 class="about-card-title">Què trobaràs a TechInPulse</h3>
+                        <p class="about-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+                        <ul class="about-list">
+                            <li>Comparatives de components i guies de compra.</li>
+                            <li>Guies de muntatge i optimització de PC.</li>
+                            <li>Experiments i projectes web amb Firebase.</li>
+                        </ul>
+                    </article>
+                </section>
             </div>
         </div>
     </main>
     <footer>
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi
     </footer>
+
 </body>
 
 </html>
