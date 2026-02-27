@@ -655,7 +655,7 @@ function renderEstado(user) {
     estado.textContent = 'No has iniciado sesión.';
 
     if (navAuthChip) navAuthChip.hidden = false;
-    if (navAuthAvatar) navAuthAvatar.hidden = true;
+    if (navAuthAvatar) navAuthAvatar.hidden = false;
     if (navAuthLogged) navAuthLogged.hidden = true;
     if (navAuthGuest) navAuthGuest.hidden = false;
     if (navAvatarImg) {
