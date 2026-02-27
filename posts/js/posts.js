@@ -56,6 +56,7 @@ const modalCrearPost = document.getElementById('crearPostModal');
 let lastActiveElement = null;
 
 const navAuthChip = document.getElementById('navAuthChip');
+const navAuthAvatar = document.getElementById('navAuthAvatar');
 const navAuthLogged = document.getElementById('navAuthLogged');
 const navAuthGuest = document.getElementById('navAuthGuest');
 const navAvatarImg = document.getElementById('navAvatarImg');
@@ -627,6 +628,7 @@ function renderEstado(user) {
     estado.textContent = `Sesión iniciada como ${nombre}`;
 
     if (navAuthChip) navAuthChip.hidden = false;
+    if (navAuthAvatar) navAuthAvatar.hidden = false;
     if (navAuthLogged) {
       navAuthLogged.hidden = false;
       navAuthLogged.textContent = user.displayName || user.email || 'Perfil';
@@ -653,6 +655,7 @@ function renderEstado(user) {
     estado.textContent = 'No has iniciado sesión.';
 
     if (navAuthChip) navAuthChip.hidden = false;
+    if (navAuthAvatar) navAuthAvatar.hidden = true;
     if (navAuthLogged) navAuthLogged.hidden = true;
     if (navAuthGuest) navAuthGuest.hidden = false;
     if (navAvatarImg) {

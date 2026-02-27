@@ -548,19 +548,19 @@ header.blog-hero::after {
   text-decoration: none;
 }
 
-.nav-llista li.nav-auth,
-.nav-lista li.nav-auth {
+.nav-principal .nav-llista li.nav-auth,
+.nav-principal .nav-lista li.nav-auth {
   margin-left: auto;
 }
 
-.nav-auth {
+.nav-principal .nav-auth {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding: 0.1rem 0.1rem;
 }
 
-.nav-auth-chip {
+.nav-principal .nav-auth-chip {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -575,12 +575,12 @@ header.blog-hero::after {
   transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background-color 140ms ease;
 }
 
-.nav-auth-chip:focus-visible {
+.nav-principal .nav-auth-chip:focus-visible {
   outline: 0;
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16), 0 18px 40px rgba(15, 23, 42, 0.10);
 }
 
-.nav-auth-avatar {
+.nav-principal .nav-auth-avatar {
   width: 20px;
   height: 20px;
   border-radius: 999px;
@@ -595,18 +595,18 @@ header.blog-hero::after {
   line-height: 0;
 }
 
-.nav-auth-avatar i {
+.nav-principal .nav-auth-avatar i {
   font-size: 1.1rem;
 }
 
-.nav-avatar-img {
+.nav-principal .nav-avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.nav-auth-guest {
+.nav-principal .nav-auth-guest {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -616,18 +616,18 @@ header.blog-hero::after {
   border: 0;
 }
 
-.nav-auth-link {
+.nav-principal .nav-auth-link {
   text-decoration: none;
   color: rgba(15, 23, 42, 0.92);
   font-weight: 700;
   font-size: 0.9rem;
 }
 
-.nav-auth-link:hover {
+.nav-principal .nav-auth-link:hover {
   text-decoration: underline;
 }
 
-.nav-auth-sep {
+.nav-principal .nav-auth-sep {
   color: rgba(15, 23, 42, 0.45);
 }
 
