@@ -696,17 +696,37 @@ function setMsg(texto, esError) {
   msg.dataset.tipo = esError ? 'error' : 'ok';
 }
 
+function toTitleCase(text) {
+  const src = String(text || '').trim();
+  if (!src) return '';
+  return src
+    .split(/\s+/)
+    .map((w) => {
+      const lower = w.toLowerCase();
+      return lower ? lower[0].toUpperCase() + lower.slice(1) : '';
+    })
+    .join(' ');
+}
+
+function normalizeDisplayName(name) {
+  const raw = String(name || '').trim();
+  if (!raw) return '';
+  const letters = raw.replace(/[^\p{L}]+/gu, '');
+  if (letters && letters === letters.toUpperCase()) return toTitleCase(raw);
+  return raw;
+}
+
 function renderEstado(user) {
   if (!estado) return;
   if (user) {
-    const nombre = user.displayName || user.email || 'Usuario';
+    const nombre = normalizeDisplayName(user.displayName) || user.email || 'Usuario';
     estado.textContent = `Sesión iniciada como ${nombre}`;
 
     if (navAuthChip) navAuthChip.hidden = false;
     if (navAuthAvatar) navAuthAvatar.hidden = false;
     if (navAuthLogged) {
       navAuthLogged.hidden = false;
-      navAuthLogged.textContent = user.displayName || user.email || 'Perfil';
+      navAuthLogged.textContent = normalizeDisplayName(user.displayName) || user.email || 'Perfil';
     }
     if (navAuthGuest) navAuthGuest.hidden = true;
 
