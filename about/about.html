@@ -1,74 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Sobre mi | TechInPulse</title>
-    <meta name="description" content="Plantilla HTML v1.0">
-    <meta name="author" content="Hans Lao Moncusi">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="./../LAYOUT/structure/columns.css">
-    <link rel="stylesheet" href="./../LAYOUT/structure/height.css">
-    <link rel="stylesheet" href="./css/styles.css">
+    <meta name="description" content="Plantilla HTML v1.0" />
+    <meta name="author" content="Hans Lao Moncusi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="./../LAYOUT/structure/columns.css" />
+    <link rel="stylesheet" href="./../LAYOUT/structure/height.css" />
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/about.css" />
 </head>
 
 <body>
-    <header class="blog-hero hero-surface">
-        <div class="hero-inner">
-            <p class="hero-kicker">Sobre mi</p>
-            <h1 class="hero-title">TechInPulse</h1>
-            <p class="hero-subtitle">Tecnologia en el pols. Coneix qui hi ha darrere del projecte.</p>
-        </div>
-    </header>
-    <nav class="hero-surface">
-        <ul class="barra-nav">
-            <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Home</a></li>
-            <li><a href="./../posts/posts.html"><i class="fas fa-newspaper"></i>&nbsp;Posts</a></li>
-            <li><a href="./../contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contact</a></li>
-            <li><a href="./../login/login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a></li>
-            <li><a href="./../register/register.html"><i class="fas fa-user-plus"></i>&nbsp;Register</a></li>
-        </ul>
-    </nav>
+    <div class="hero-top hero-surface">
+        <header class="blog-hero">
+            <div class="hero-inner">
+                <p class="hero-kicker">Sobre mi</p>
+                <h1 class="hero-title">TechInPulse</h1>
+                <p class="hero-subtitle">
+                    Tecnologia en el pols. Coneix qui hi ha darrere del projecte.
+                </p>
+            </div>
+        </header>
+        <nav>
+            <ul class="barra-nav">
+                <li>
+                    <a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Home</a>
+                </li>
+                <li>
+                    <a href="./../posts/posts.html"><i class="fas fa-newspaper"></i>&nbsp;Posts</a>
+                </li>
+                <li>
+                    <a href="./../contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contact</a>
+                </li>
+                <li>
+                    <a href="./../login/login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
+                </li>
+                <li>
+                    <a href="./../register/register.html"><i class="fas fa-user-plus"></i>&nbsp;Register</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     <main>
         <div class="container">
             <div class="about-grid about-grid-hero row">
                 <section class="col-8 md-col-12 sm-col-12">
                     <article class="about-card about-card-hero">
                         <div class="about-hero">
-                            <img class="about-avatar" src="../img/FotoHansLM.JPG" alt="Foto de perfil Hans Lao Moncusi">
+                            <img class="about-avatar" src="../img/FotoHansLM.JPG"
+                                alt="Foto de perfil Hans Lao Moncusi" />
                             <div class="about-hero-text">
                                 <h2 class="about-name">Hans Lao Moncusi</h2>
                                 <p class="about-role">Front-End · Hardware · Software</p>
-                                <p class="about-bio">Estudiant de CFGM SMX. Apassionat per la programació i el món del hardware. M'encanta muntar ordinadors personalitzats amb els millors components,i experimentar amb configuracions avançades. Gaudeixo aprenent noves tecnologies i buscant sempre el millor rendiment tant en software com en hardware.</p>
+                                <p class="about-bio">
+                                    Estudiant de CFGM SMX. Apassionat per la programació i el
+                                    món del hardware. M'encanta muntar ordinadors personalitzats
+                                    amb els millors components,i experimentar amb configuracions
+                                    avançades. Gaudeixo aprenent noves tecnologies i buscant
+                                    sempre el millor rendiment tant en software com en hardware.
+                                </p>
                                 <div class="about-actions">
                                     <a class="about-btn about-btn-primary" href="./../contact/contact.html">Contacte</a>
-                                    <a class="about-btn about-btn-ghost" href="./../posts/posts.html?mock=1">Veure posts</a>
+                                    <a class="about-btn about-btn-ghost" href="./../posts/posts.html?mock=1">Veure
+                                        posts</a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="about-highlights" aria-label="Punts destacats">
                             <div class="about-highlight">
-                                <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-bolt"></i></div>
+                                <div class="about-highlight-icon" aria-hidden="true">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
                                 <div class="about-highlight-body">
                                     <div class="about-highlight-title">Contingut pràctic</div>
-                                    <div class="about-highlight-text">Guies, comparatives i consells enfocats a resultats.</div>
+                                    <div class="about-highlight-text">
+                                        Guies, comparatives i consells enfocats a resultats.
+                                    </div>
                                 </div>
                             </div>
                             <div class="about-highlight">
-                                <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-microchip"></i></div>
+                                <div class="about-highlight-icon" aria-hidden="true">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
                                 <div class="about-highlight-body">
                                     <div class="about-highlight-title">Hardware & PC</div>
-                                    <div class="about-highlight-text">Muntatge, optimització i configuracions eficients.</div>
+                                    <div class="about-highlight-text">
+                                        Muntatge, optimització i configuracions eficients.
+                                    </div>
                                 </div>
                             </div>
                             <div class="about-highlight">
-                                <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-code"></i></div>
+                                <div class="about-highlight-icon" aria-hidden="true">
+                                    <i class="fas fa-code"></i>
+                                </div>
                                 <div class="about-highlight-body">
                                     <div class="about-highlight-title">Projectes web</div>
-                                    <div class="about-highlight-text">Experiments i aplicacions amb JavaScript i Firebase.</div>
+                                    <div class="about-highlight-text">
+                                        Experiments i aplicacions amb JavaScript i Firebase.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -76,31 +111,50 @@
                         <div class="about-highlights-footer" aria-label="Més sobre mi">
                             <div class="about-highlights about-highlights-secondary">
                                 <div class="about-highlight">
-                                    <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-stream"></i></div>
+                                    <div class="about-highlight-icon" aria-hidden="true">
+                                        <i class="fas fa-stream"></i>
+                                    </div>
                                     <div class="about-highlight-body">
                                         <div class="about-highlight-title">Lorem ipsum</div>
-                                        <div class="about-highlight-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                        <div class="about-highlight-text">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="about-highlight">
-                                    <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-layer-group"></i></div>
+                                    <div class="about-highlight-icon" aria-hidden="true">
+                                        <i class="fas fa-layer-group"></i>
+                                    </div>
                                     <div class="about-highlight-body">
                                         <div class="about-highlight-title">Dolor sit</div>
-                                        <div class="about-highlight-text">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                                        <div class="about-highlight-text">
+                                            Sed do eiusmod tempor incididunt ut labore et dolore
+                                            magna aliqua.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="about-highlight">
-                                    <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+                                    <div class="about-highlight-icon" aria-hidden="true">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
                                     <div class="about-highlight-body">
                                         <div class="about-highlight-title">Amet elit</div>
-                                        <div class="about-highlight-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
+                                        <div class="about-highlight-text">
+                                            Ut enim ad minim veniam, quis nostrud exercitation
+                                            ullamco laboris.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="about-highlight">
-                                    <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-rocket"></i></div>
+                                    <div class="about-highlight-icon" aria-hidden="true">
+                                        <i class="fas fa-rocket"></i>
+                                    </div>
                                     <div class="about-highlight-body">
                                         <div class="about-highlight-title">Consectetur</div>
-                                        <div class="about-highlight-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</div>
+                                        <div class="about-highlight-text">
+                                            Duis aute irure dolor in reprehenderit in voluptate
+                                            velit esse cillum dolore.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +188,10 @@
 
                         <article class="about-card">
                             <h3 class="about-card-title">Interessos</h3>
-                            <p class="about-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+                            <p class="about-muted">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Integer nec odio. Praesent libero.
+                            </p>
                             <div class="about-tags" aria-label="Interessos">
                                 <span class="about-tag">Muntatge de PC</span>
                                 <span class="about-tag">Overclocking</span>
@@ -156,23 +213,46 @@
                 <section class="col-6 md-col-6 sm-col-12">
                     <article class="about-card">
                         <h3 class="about-card-title">Habilitats</h3>
-                        <p class="about-muted">Tecnologies i àrees on estic més còmode, amb marge per seguir millorant cada setmana.</p>
+                        <p class="about-muted">
+                            Tecnologies i àrees on estic més còmode, amb marge per seguir
+                            millorant cada setmana.
+                        </p>
 
                         <div class="about-skill">
-                            <div class="about-skill-top"><span>HTML/CSS</span><span class="about-skill-pct">85%</span></div>
-                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell HTML i CSS" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><span style="width:85%"></span></div>
+                            <div class="about-skill-top">
+                                <span>HTML/CSS</span><span class="about-skill-pct">85%</span>
+                            </div>
+                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell HTML i CSS"
+                                aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                <span style="width: 85%"></span>
+                            </div>
                         </div>
                         <div class="about-skill">
-                            <div class="about-skill-top"><span>UI/UX</span><span class="about-skill-pct">65%</span></div>
-                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell UI i UX" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"><span style="width:65%"></span></div>
+                            <div class="about-skill-top">
+                                <span>UI/UX</span><span class="about-skill-pct">65%</span>
+                            </div>
+                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell UI i UX"
+                                aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                                <span style="width: 65%"></span>
+                            </div>
                         </div>
                         <div class="about-skill">
-                            <div class="about-skill-top"><span>JavaScript</span><span class="about-skill-pct">75%</span></div>
-                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell JavaScript" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><span style="width:75%"></span></div>
+                            <div class="about-skill-top">
+                                <span>JavaScript</span><span class="about-skill-pct">75%</span>
+                            </div>
+                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell JavaScript"
+                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                <span style="width: 75%"></span>
+                            </div>
                         </div>
                         <div class="about-skill">
-                            <div class="about-skill-top"><span>Firebase</span><span class="about-skill-pct">70%</span></div>
-                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell Firebase" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"><span style="width:70%"></span></div>
+                            <div class="about-skill-top">
+                                <span>Firebase</span><span class="about-skill-pct">70%</span>
+                            </div>
+                            <div class="about-skill-bar" role="progressbar" aria-label="Nivell Firebase"
+                                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                <span style="width: 70%"></span>
+                            </div>
                         </div>
                     </article>
                 </section>
@@ -180,7 +260,11 @@
                 <section class="col-6 md-col-6 sm-col-12">
                     <article class="about-card">
                         <h3 class="about-card-title">Què trobaràs a TechInPulse?</h3>
-                        <p class="about-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+                        <p class="about-muted">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                            nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed
+                            nisi.
+                        </p>
                         <ul class="about-list">
                             <li>Comparatives de components i guies de compra.</li>
                             <li>Guies de muntatge i optimització de PC.</li>
@@ -192,11 +276,22 @@
                 <section class="col-12 md-col-12 sm-col-12">
                     <article class="about-card">
                         <h3 class="about-card-title">Lorem Ipsum</h3>
-                        <p class="about-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="about-muted">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
                         <ul class="about-list">
-                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                            <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</li>
-                            <li>Duis aute irure dolor in reprehenderit in voluptate velit esse.</li>
+                            <li>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </li>
+                            <li>
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris.
+                            </li>
+                            <li>
+                                Duis aute irure dolor in reprehenderit in voluptate velit
+                                esse.
+                            </li>
                         </ul>
                     </article>
                 </section>
@@ -206,7 +301,6 @@
     <footer>
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi
     </footer>
-
 </body>
 
 </html>
