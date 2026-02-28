@@ -34,20 +34,22 @@ body {
   padding-bottom: var(--alto-footer);
 }
 
-header.blog-hero {
-  width: 100%;
-  padding: clamp(1.25rem, 3vw, 2.25rem) 1rem;
+.hero-surface {
   background:
     radial-gradient(1200px 350px at 50% 0%,
       rgba(255, 255, 255, 0.35),
       rgba(255, 255, 255, 0) 60%),
     linear-gradient(135deg, rgba(14, 165, 233, 0.85), rgba(37, 99, 235, 0.85));
-  border-bottom: 1px solid var(--color-borde);
   position: relative;
   overflow: hidden;
 }
 
-header.blog-hero::before {
+.hero-top {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
+}
+
+.hero-surface::before {
   content: "";
   position: absolute;
   inset: -40% -20% auto auto;
@@ -58,9 +60,10 @@ header.blog-hero::before {
       rgba(255, 255, 255, 0) 62%);
   transform: rotate(10deg);
   pointer-events: none;
+  z-index: 0;
 }
 
-header.blog-hero::after {
+.hero-surface::after {
   content: "";
   position: absolute;
   inset: auto auto -45% -20%;
@@ -71,6 +74,16 @@ header.blog-hero::after {
       rgba(255, 255, 255, 0) 65%);
   transform: rotate(-8deg);
   pointer-events: none;
+  z-index: 0;
+}
+
+header.blog-hero {
+  width: 100%;
+  padding: clamp(1.25rem, 3vw, 2.25rem) 1rem 0.6rem;
+  background: transparent;
+  border-bottom: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-inner {
@@ -568,8 +581,11 @@ header.blog-hero::after {
 .nav-principal {
   display: block;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.72);
-  border-bottom: 1px solid var(--color-borde);
+  background-color: transparent;
+  border-bottom: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1500;
   backdrop-filter: blur(10px);
 }
 
@@ -592,10 +608,21 @@ header.blog-hero::after {
 .nav-llista li a,
 .nav-lista li a {
   display: block;
-  color: rgba(15, 23, 42, 0.92);
-  text-align: center;
-  padding: 0.65rem 0.95rem;
+  color: rgba(255, 255, 255, 0.96);
+  font-weight: 700;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.6rem;
   text-decoration: none;
+  background: transparent;
+  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0);
+  transition: box-shadow 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.nav-llista li a:hover,
+.nav-lista li a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
 }
 
 .nav-principal .nav-llista li.nav-auth,

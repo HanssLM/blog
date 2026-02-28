@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ca">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@
         <nav>
             <ul class="barra-nav">
                 <li><a href="index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
-                <li><a href="posts/posts.html"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
+                <li><a href="posts/posts.html?mock=1"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
                 <li><a href="about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre Nosaltres</a></li>
                 <li><a href="contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contacte</a></li>
                 <li><a href="login/login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Accedir</a></li>
@@ -36,31 +37,129 @@
         <div class="container">
             <div class="row home-layout">
                 <section class="col-8 md-col-12 sm-col-12">
-                    <p class="home-lead">Benvinguts al nostre blog sobre hardware. Aquí trobareu anàlisis de components, guies de muntatge i les últimes novetats del sector.</p>
+                    <div class="home-intro">
+                        <div class="home-intro-card">
+                            <h2 class="home-intro-title">Benvingut a TechInPulse</h2>
+                            <p class="home-lead">A TechInPulse trobaràs anàlisis reals, guies pràctiques i recomanacions
+                                honestes per triar components, muntar el teu PC i optimitzar el rendiment sense perdre
+                                temps. Ens enfoquem en decisions reals: què val la pena comprar, què pots evitar i com
+                                configurar-ho perquè tot vagi fi. Si t’agrada el hardware i la tecnologia amb criteri,
+                                ets al lloc correcte.</p>
+                        </div>
 
-                    <div class="banner">
-                        <img src="https://phoenixnap.com/glossary/wp-content/uploads/2022/09/what-is-hardware.jpg" alt="img1">
+                        <div class="home-highlights" aria-label="Punts destacats">
+                            <div class="home-highlight">
+                                <div class="home-highlight-icon" aria-hidden="true"><i class="fas fa-bolt"></i></div>
+                                <div class="home-highlight-body">
+                                    <div class="home-highlight-title">Ràpid i clar</div>
+                                    <div class="home-highlight-text">Resums útils i conclusions directes per decidir.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="home-highlight">
+                                <div class="home-highlight-icon" aria-hidden="true"><i class="fas fa-microchip"></i>
+                                </div>
+                                <div class="home-highlight-body">
+                                    <div class="home-highlight-title">Components & builds</div>
+                                    <div class="home-highlight-text">Guies per muntatge, compatibilitat i rendiment.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="home-highlight">
+                                <div class="home-highlight-icon" aria-hidden="true"><i class="fas fa-sliders-h"></i>
+                                </div>
+                                <div class="home-highlight-body">
+                                    <div class="home-highlight-title">Optimització</div>
+                                    <div class="home-highlight-text">Configuració, drivers i ajustos perquè tot vagi fi.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <h2 class="home-section-title">Últimes Entrades</h2>
-                    <div class="resum-article">
-                        <h3>Noves GPUs: Potència sense precedents</h3>
-                        <p>Analitzem les noves targetes gràfiques que han arribat al mercat i et diem si val la pena la inversió... <a href="posts/posts.html#post-gpu">Llegir més</a></p>
-                    </div>
-                    <div class="resum-article">
-                        <h3>Guia de Muntatge de PC per a Principiants</h3>
-                        <p>T'expliquem pas a pas com muntar el teu propi ordinador des de zero, evitant els errors més comuns... <a href="posts/posts.html#post-muntatge">Llegir més</a></p>
-                    </div>
+                    <section class="home-panels" aria-label="Panells destacats">
+                        <div class="home-panels-grid">
+                            <div class="home-panel">
+                                <div class="home-panel-icon" aria-hidden="true"><i class="fas fa-layer-group"></i></div>
+                                <div class="home-panel-body">
+                                    <div class="home-panel-title">Comença aquí</div>
+                                    <div class="home-panel-text">Guies ràpides per triar components i evitar errors típics.</div>
+                                    <a class="home-panel-link" href="posts/posts.html?mock=1">Explorar guies</a>
+                                </div>
+                            </div>
+                            <div class="home-panel">
+                                <div class="home-panel-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+                                <div class="home-panel-body">
+                                    <div class="home-panel-title">Comparatives</div>
+                                    <div class="home-panel-text">GPU, CPU, SSD i perifèrics: què compensa segons el teu ús.</div>
+                                    <a class="home-panel-link" href="posts/posts.html?mock=1">Veure comparatives</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="home-entries-card" aria-label="Últimes Entrades">
+                        <div class="home-entries-header">
+                            <h2 class="home-section-title home-entries-title">Últimes Entrades</h2>
+                            <a class="home-entries-more" href="posts/posts.html?mock=1">Veure més publicacions</a>
+                        </div>
+
+                        <div class="home-entries">
+                            <article class="resum-article">
+                                <h3>Noves GPUs: Potència sense precedents</h3>
+                                <p>Analitzem les noves targetes gràfiques que han arribat al mercat i et diem si val la pena la
+                                    inversió...</p>
+                                <a class="home-entry-more" href="posts/post.html?id=mock-2&mock=1">Veure més</a>
+                            </article>
+                            <article class="resum-article">
+                                <h3>Guia de Muntatge de PC per a Principiants</h3>
+                                <p>T'expliquem pas a pas com muntar el teu propi ordinador des de zero, evitant els errors més
+                                    comuns...</p>
+                                <a class="home-entry-more" href="posts/post.html?id=mock-1&mock=1">Veure més</a>
+                            </article>
+                            <article class="resum-article">
+                                <h3>SSD vs HDD: què compensa avui?</h3>
+                                <p>Comparativa ràpida per saber quan val la pena fer el salt a SSD i quin tipus escollir...</p>
+                                <a class="home-entry-more" href="posts/post.html?id=mock-4&mock=1">Veure més</a>
+                            </article>
+                            <article class="resum-article">
+                                <h3>RAM i dual-channel: què has de saber</h3>
+                                <p>Freqüència, latència i configuració: com escollir memòria perquè el PC vagi fluid i estable...</p>
+                                <a class="home-entry-more" href="posts/post.html?id=mock-3&mock=1">Veure més</a>
+                            </article>
+                        </div>
+                    </section>
                 </section>
 
                 <aside class="col-4 md-col-12 sm-col-12">
                     <div class="home-aside">
                         <div class="home-card">
+                            <h3 class="home-card-title">Cerca</h3>
+                            <form class="home-search" action="posts/posts.html" method="get" role="search" aria-label="Cerca al blog">
+                                <input type="hidden" name="mock" value="1" />
+                                <label class="home-field">
+                                    <span class="home-field-label">Paraula clau</span>
+                                    <input class="home-input" type="search" name="q" placeholder="GPU, SSD, muntatge…" />
+                                </label>
+                                <button class="home-button" type="submit">Cercar</button>
+                            </form>
+                        </div>
+
+                        <div class="home-card">
                             <h3 class="home-card-title">Enllaços ràpids</h3>
                             <ul class="home-links">
-                                <li><a href="posts/posts.html">Veure tots els articles</a></li>
                                 <li><a href="about/about.html">Qui som</a></li>
                                 <li><a href="contact/contact.html">Contacte</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="home-card">
+                            <h3 class="home-card-title">Populars</h3>
+                            <ul class="home-links">
+                                <li><a href="posts/post.html?id=mock-2&mock=1">Guia ràpida per triar GPU</a></li>
+                                <li><a href="posts/post.html?id=mock-1&mock=1">Muntatge de PC: checklist</a></li>
+                                <li><a href="posts/post.html?id=mock-4&mock=1">SSD: quin format i quina mida?</a></li>
+                                <li><a href="posts/posts.html?mock=1">Totes les publicacions</a></li>
                             </ul>
                         </div>
 
@@ -73,6 +172,18 @@
                                 <span class="home-tag">Guies</span>
                             </div>
                         </div>
+
+                        <div class="home-card">
+                            <h3 class="home-card-title">Actualitzacions</h3>
+                            <p class="home-muted">Rep un resum setmanal amb les noves guies i comparatives.</p>
+                            <form class="home-newsletter" action="#" method="post" aria-label="Subscripció">
+                                <label class="home-field">
+                                    <span class="home-field-label">Email</span>
+                                    <input class="home-input" type="email" name="email" placeholder="tu@exemple.com" />
+                                </label>
+                                <button class="home-button" type="submit">Subscriure’m</button>
+                            </form>
+                        </div>
                     </div>
                 </aside>
             </div>
@@ -83,4 +194,5 @@
         &copy; 2025 Educem SMX 1A · Pàgina creada per Hans Lao Moncusi
     </footer>
 </body>
+
 </html>
