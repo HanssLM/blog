@@ -15,14 +15,14 @@
 </head>
 
 <body>
-    <header class="blog-hero">
+    <header class="blog-hero hero-surface">
         <div class="hero-inner">
             <p class="hero-kicker">Sobre mi</p>
             <h1 class="hero-title">TechInPulse</h1>
             <p class="hero-subtitle">Tecnologia en el pols. Coneix qui hi ha darrere del projecte.</p>
         </div>
     </header>
-    <nav>
+    <nav class="hero-surface">
         <ul class="barra-nav">
             <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Home</a></li>
             <li><a href="./../posts/posts.html"><i class="fas fa-newspaper"></i>&nbsp;Posts</a></li>
@@ -72,6 +72,39 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="about-highlights-footer" aria-label="Més sobre mi">
+                            <div class="about-highlights about-highlights-secondary">
+                                <div class="about-highlight">
+                                    <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-stream"></i></div>
+                                    <div class="about-highlight-body">
+                                        <div class="about-highlight-title">Lorem ipsum</div>
+                                        <div class="about-highlight-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                    </div>
+                                </div>
+                                <div class="about-highlight">
+                                    <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-layer-group"></i></div>
+                                    <div class="about-highlight-body">
+                                        <div class="about-highlight-title">Dolor sit</div>
+                                        <div class="about-highlight-text">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                                    </div>
+                                </div>
+                                <div class="about-highlight">
+                                    <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+                                    <div class="about-highlight-body">
+                                        <div class="about-highlight-title">Amet elit</div>
+                                        <div class="about-highlight-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
+                                    </div>
+                                </div>
+                                <div class="about-highlight">
+                                    <div class="about-highlight-icon" aria-hidden="true"><i class="fas fa-rocket"></i></div>
+                                    <div class="about-highlight-body">
+                                        <div class="about-highlight-title">Consectetur</div>
+                                        <div class="about-highlight-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </article>
                 </section>
 
@@ -82,6 +115,10 @@
                             <ul class="about-socials" aria-label="Xarxes socials">
                                 <li class="about-social">
                                     <i class="fab fa-instagram" aria-hidden="true"></i>
+                                    <span class="about-social-handle">@LoremIpsum123</span>
+                                </li>
+                                <li class="about-social">
+                                    <i class="fab fa-linkedin" aria-hidden="true"></i>
                                     <span class="about-social-handle">@LoremIpsum123</span>
                                 </li>
                                 <li class="about-social">
@@ -97,23 +134,30 @@
 
                         <article class="about-card">
                             <h3 class="about-card-title">Interessos</h3>
+                            <p class="about-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
                             <div class="about-tags" aria-label="Interessos">
                                 <span class="about-tag">Muntatge de PC</span>
                                 <span class="about-tag">Overclocking</span>
                                 <span class="about-tag">Desenvolupament web</span>
                                 <span class="about-tag">Disseny UI/UX</span>
                                 <span class="about-tag">Optimització</span>
+                                <span class="about-tag">Benchmarking</span>
+                                <span class="about-tag">Linux</span>
+                                <span class="about-tag">CSS Grid</span>
+                                <span class="about-tag">JavaScript</span>
+                                <span class="about-tag">Firebase</span>
                             </div>
                         </article>
                     </div>
                 </aside>
             </div>
 
-            <div class="about-grid row">
-                <section class="col-6 md-col-12 sm-col-12">
+            <div class="about-grid about-grid-split row">
+                <section class="col-6 md-col-6 sm-col-12">
                     <article class="about-card">
                         <h3 class="about-card-title">Habilitats</h3>
                         <p class="about-muted">Tecnologies i àrees on estic més còmode, amb marge per seguir millorant cada setmana.</p>
+
                         <div class="about-skill">
                             <div class="about-skill-top"><span>HTML/CSS</span><span class="about-skill-pct">85%</span></div>
                             <div class="about-skill-bar" role="progressbar" aria-label="Nivell HTML i CSS" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><span style="width:85%"></span></div>
@@ -133,7 +177,7 @@
                     </article>
                 </section>
 
-                <section class="col-6 md-col-12 sm-col-12">
+                <section class="col-6 md-col-6 sm-col-12">
                     <article class="about-card">
                         <h3 class="about-card-title">Què trobaràs a TechInPulse?</h3>
                         <p class="about-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
@@ -141,6 +185,18 @@
                             <li>Comparatives de components i guies de compra.</li>
                             <li>Guies de muntatge i optimització de PC.</li>
                             <li>Experiments i projectes web amb Firebase.</li>
+                        </ul>
+                    </article>
+                </section>
+
+                <section class="col-12 md-col-12 sm-col-12">
+                    <article class="about-card">
+                        <h3 class="about-card-title">Lorem Ipsum</h3>
+                        <p class="about-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <ul class="about-list">
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                            <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</li>
+                            <li>Duis aute irure dolor in reprehenderit in voluptate velit esse.</li>
                         </ul>
                     </article>
                 </section>

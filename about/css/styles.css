@@ -24,21 +24,17 @@ header {
     width: 100%;
 }
 
-header.blog-hero {
-    width: 100%;
-    padding: clamp(1.25rem, 3vw, 2.25rem) 1rem;
+.hero-surface {
     background:
         radial-gradient(1200px 350px at 50% 0%,
             rgba(255, 255, 255, 0.35),
             rgba(255, 255, 255, 0) 60%),
         linear-gradient(135deg, rgba(14, 165, 233, 0.85), rgba(37, 99, 235, 0.85));
-    border-bottom: 1px solid #ccc;
     position: relative;
     overflow: hidden;
-    height: auto;
 }
 
-header.blog-hero::before {
+.hero-surface::before {
     content: "";
     position: absolute;
     inset: -40% -20% auto auto;
@@ -49,9 +45,10 @@ header.blog-hero::before {
             rgba(255, 255, 255, 0) 62%);
     transform: rotate(10deg);
     pointer-events: none;
+    z-index: 0;
 }
 
-header.blog-hero::after {
+.hero-surface::after {
     content: "";
     position: absolute;
     inset: auto auto -45% -20%;
@@ -62,6 +59,18 @@ header.blog-hero::after {
             rgba(255, 255, 255, 0) 65%);
     transform: rotate(-8deg);
     pointer-events: none;
+    z-index: 0;
+}
+
+header.blog-hero {
+    width: 100%;
+    padding: clamp(1.25rem, 3vw, 2.25rem) 1rem;
+    border-bottom: 0;
+    height: auto;
+}
+
+header.blog-hero, nav {
+    background: inherit;
 }
 
 .hero-inner {
@@ -98,35 +107,70 @@ header.blog-hero::after {
     max-width: 48rem;
 }
 
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    margin-top: -1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
+}
+
 .barra-nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #62ffbe;
+    list-style: none;
+    width: min(1560px, 100%);
+    margin: 0 auto;
+    padding: 0.5rem 0;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
 }
 
 @media (max-width: 48em) {
     .barra-nav {
-        display: flex;
-        flex-wrap: wrap;
+        padding: 0.65rem 0;
     }
-
-    .barra-nav li {
-        float: none;
-    }
-}
-
-.barra-nav li {
-    float: left;
 }
 
 .barra-nav li a {
-    display: block;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    padding: 0.85em 1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 0.6rem;
     text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.96);
+    background: transparent;
+    border: 0;
+    box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0);
+    transition: box-shadow 160ms ease, background 160ms ease, transform 160ms ease;
+    white-space: nowrap;
+}
+
+.barra-nav li a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.85);
+    transform: translateY(-1px);
+}
+
+.barra-nav li a:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.20),
+        inset 0 -2px 0 rgba(255, 255, 255, 0.90);
+}
+
+.barra-nav li a i {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.barra-nav li a:active {
+    transform: translateY(0);
 }
 
 .taula-xarxes i.fab {
@@ -144,6 +188,10 @@ i.fab.fa-instagram {
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
+}
+
+i.fab.fa-linkedin {
+    color: #0073B1;
 }
 
 i.fab.fa-tiktok {
@@ -164,6 +212,38 @@ main {
 
 .about-grid {
     margin-top: 1.25rem;
+    align-items: start;
+}
+
+.about-grid.row {
+    align-items: start;
+}
+
+@media (min-width: 48.001em) {
+    .about-grid.about-grid-split.row {
+        align-items: stretch;
+    }
+
+    .about-grid.about-grid-split.row > section {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .about-grid.about-grid-split.row > section > .about-card {
+        flex: 1;
+        min-height: 0;
+    }
+}
+
+@media (min-width: 64.001em) {
+    .about-grid.about-grid-split.row {
+        grid-template-columns: 45fr 27.5fr 27.5fr;
+    }
+
+    .about-grid.about-grid-split.row > section {
+        grid-column: auto !important;
+    }
 }
 
 @media (min-width: 48.001em) {
@@ -186,6 +266,24 @@ main {
         flex: 1;
         min-height: 0;
     }
+
+    .about-grid-hero.row > aside {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .about-grid-hero.row > aside > .about-stack {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about-grid-hero.row > aside > .about-stack > .about-card {
+        flex: 1;
+        min-height: 0;
+    }
 }
 
 .about-card {
@@ -198,6 +296,8 @@ main {
 
 .about-card-hero {
     padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .about-hero {
@@ -271,6 +371,16 @@ main {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.85rem;
     margin-top: 1.25rem;
+}
+
+.about-highlights-footer {
+    margin-top: auto;
+    padding-top: 1.25rem;
+}
+
+.about-highlights.about-highlights-secondary {
+    margin-top: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .about-highlight {
@@ -444,6 +554,15 @@ main ul {
     list-style-type: disc;
     list-style-position: outside;
     padding-left: 2.5em;
+}
+
+main .about-now-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+main .about-now-list li {
+    list-style: none;
 }
 
 main h3 {
