@@ -407,11 +407,36 @@
 .home-links a {
     color: rgba(15, 23, 42, 0.78);
     text-decoration: none;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .home-links a:hover {
     color: rgba(37, 99, 235, 0.92);
+}
+
+.home-subcards {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.home-subcard {
+    background: rgba(15, 23, 42, 0.03);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 0.9rem;
+    padding: 0.9rem;
+}
+
+.home-subcard-title {
+    margin: 0 0 0.65rem;
+    font-size: 0.85rem;
+    font-weight: 1000;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(15, 23, 42, 0.68);
+}
+
+.home-subcard .home-links {
+    gap: 0.45rem;
 }
 
 .home-tags {
