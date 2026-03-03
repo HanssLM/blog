@@ -11,26 +11,20 @@ const navAuthMenu = document.getElementById('navAuthMenu');
 const btnNavLogout = document.getElementById('btnNavLogout');
 
 function normalizeDisplayName(value) {
-  return String(value || '').trim();
-}
+  const raw = String(value || '').trim();
+  if (!raw) return '';
 
-function isAuthMenuOpen() {
-  return !!navAuthMenu && !navAuthMenu.hasAttribute('hidden');
-}
+  if (raw.includes('@')) return raw;
 
-function openAuthMenu() {
-  if (!navAuthMenu) return;
-  navAuthMenu.removeAttribute('hidden');
-}
+  const words = raw
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((w) => {
+      const lower = w.toLowerCase();
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    });
 
-function closeAuthMenu() {
-  if (!navAuthMenu) return;
-  navAuthMenu.setAttribute('hidden', '');
-}
-
-function toggleAuthMenu() {
-  if (isAuthMenuOpen()) closeAuthMenu();
-  else openAuthMenu();
+  return words.join(' ');
 }
 
 function updateNavForUser(user) {
@@ -38,46 +32,19 @@ function updateNavForUser(user) {
   if (navAuthAvatar) navAuthAvatar.hidden = false;
 
   if (user) {
+    if (navAuthMenu) navAuthMenu.removeAttribute('hidden');
     if (navAuthLogged) {
       navAuthLogged.hidden = false;
       navAuthLogged.textContent = normalizeDisplayName(user.displayName) || user.email || 'Perfil';
     }
     if (navAuthGuest) navAuthGuest.hidden = true;
   } else {
+    if (navAuthMenu) navAuthMenu.setAttribute('hidden', '');
     if (navAuthLogged) navAuthLogged.hidden = true;
     if (navAuthGuest) navAuthGuest.hidden = false;
     if (navAvatarFallback) navAvatarFallback.hidden = false;
   }
-
-  closeAuthMenu();
 }
-
-if (navAuthChip) {
-  navAuthChip.addEventListener('click', (e) => {
-    const user = auth?.currentUser;
-    if (!user) return;
-
-    const target = e.target;
-    if (navAuthGuest && navAuthGuest.contains(target)) return;
-    if (target instanceof HTMLElement && target.closest('#navAuthMenu')) return;
-
-    e.preventDefault();
-    toggleAuthMenu();
-  });
-}
-
-document.addEventListener('click', (e) => {
-  if (!isAuthMenuOpen()) return;
-  const t = e.target;
-  if (!(t instanceof Node)) return;
-  if (navAuthChip && navAuthChip.contains(t)) return;
-  closeAuthMenu();
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key !== 'Escape') return;
-  closeAuthMenu();
-});
 
 if (btnNavLogout) {
   btnNavLogout.addEventListener('click', async () => {

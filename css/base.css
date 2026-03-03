@@ -30,18 +30,21 @@ header {
 }
 
 .hero-surface {
-    background:
-        radial-gradient(1200px 350px at 50% 0%,
-            rgba(255, 255, 255, 0.35),
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.12) 0%,
+            rgba(255, 255, 255, 0.08) 30%,
             rgba(255, 255, 255, 0) 60%),
         linear-gradient(135deg, rgba(14, 165, 233, 0.85), rgba(37, 99, 235, 0.85));
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero-top {
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
+    position: relative;
+    z-index: 6000;
+    overflow: visible;
 }
 
 .hero-surface::before {
@@ -115,7 +118,7 @@ header.blog-hero {
 nav {
     width: 100%;
     position: relative;
-    z-index: 1;
+    z-index: 6000;
 }
 
 .barra-nav {
@@ -206,7 +209,7 @@ nav {
     border: 0;
     background: transparent;
     color: rgba(15, 23, 42, 0.92);
-    font-weight: 600;
+    font-weight: 575;
     font-size: 0.9rem;
     cursor: pointer;
     line-height: 1.1;
@@ -238,7 +241,13 @@ nav {
     border: 1px solid rgba(15, 23, 42, 0.12);
     box-shadow: 0 18px 44px rgba(15, 23, 42, 0.16);
     backdrop-filter: blur(10px);
-    z-index: 2000;
+    z-index: 5000;
+    display: none;
+}
+
+.barra-nav .nav-auth-chip:hover .nav-auth-menu,
+.barra-nav .nav-auth-chip:focus-within .nav-auth-menu {
+    display: block;
 }
 
 .barra-nav .nav-auth-menu-item {
