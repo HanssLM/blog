@@ -399,9 +399,8 @@ body {
   padding-right: 1rem;
 }
 
-.hero-top .barra-nav {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.hero-top {
+  line-height: 1.25;
 }
 
 .estado-auth {

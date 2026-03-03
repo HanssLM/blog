@@ -8,30 +8,156 @@
     <meta name="description" content="Blog">
     <meta name="author" content="Hans Lao Moncusi">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./../LAYOUT/structure/columns.css">
+    <link rel="stylesheet" href="./../css/base.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-    <header>
-        <h1>CONTACTE</h1>
-        <h3>PAGINA WEB EN CONSTRUCCIO</h3>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="./../index.html">Home</a></li>
-            <li><a href="./../about/about.html">About</a></li>
-            <li><a href="./../contact/contact.html">Contact</a></li>
-            <li><a href="./../login/login.html">Login</a></li>
-            <li><a href="./../register/register.html">Register</a></li>
-        </ul>
-    </nav>
+    <div class="hero-top hero-surface">
+        <header class="blog-hero">
+            <div class="hero-inner">
+                <p class="hero-kicker">CONTACTE</p>
+                <h1 class="hero-title">Contacte amb mi</h1>
+                <p class="hero-subtitle">Envia’ns un missatge i et respondrem el més aviat possible.</p>
+            </div>
+        </header>
+
+        <nav>
+            <ul class="barra-nav">
+                <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
+                <li><a href="./../posts/posts.html?mock=1"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
+                <li><a href="./../about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre mi</a></li>
+                <li><a href="./contact.html"><i class="fas fa-envelope"></i>&nbsp;Contacte</a></li>
+                <li class="nav-auth" aria-label="Compte">
+                    <div id="navAuthChip" class="nav-auth-chip">
+                        <span id="navAuthAvatar" class="nav-auth-avatar" aria-hidden="true">
+                            <i id="navAvatarFallback" class="fas fa-user-circle" aria-hidden="true"></i>
+                        </span>
+                        <button id="navAuthLogged" class="nav-auth-name" type="button" hidden></button>
+                        <span id="navAuthGuest" class="nav-auth-guest">
+                            <a class="nav-auth-link" href="./../login/login.html">Iniciar sessió</a>
+                            <span class="nav-auth-sep">|</span>
+                            <a class="nav-auth-link" href="./../register/register.html">Registrarse</a>
+                        </span>
+                        <div id="navAuthMenu" class="nav-auth-menu" role="menu" aria-label="Compte" hidden>
+                            <button id="btnNavLogout" class="nav-auth-menu-item" type="button" role="menuitem">Tancar
+                                sessió</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
     <main>
-        <h1>DISPONIBLE PROXIMAMENT</h1>
-        <img src="../img/UnderConstruction.jpg" alt="Under Construction">
+        <div class="container">
+            <div class="row contact-layout">
+                <section class="col-7 md-col-12 sm-col-12">
+                    <article class="contact-card">
+                        <h2 class="contact-title">Escriu-nos</h2>
+                        <p class="contact-lead">Tens una pregunta, una proposta o vols col·laborar? Ens encantarà
+                            llegir-te.</p>
+
+                        <form class="contact-form" action="#" method="post" novalidate>
+                            <div class="contact-grid">
+                                <label class="contact-field">
+                                    <span class="contact-label">Nom</span>
+                                    <input name="name" type="text" autocomplete="name" required>
+                                </label>
+                                <label class="contact-field">
+                                    <span class="contact-label">Correu</span>
+                                    <input name="email" type="email" autocomplete="email" required>
+                                </label>
+                            </div>
+                            <label class="contact-field">
+                                <span class="contact-label">Assumpte</span>
+                                <input name="subject" type="text" required>
+                            </label>
+                            <label class="contact-field">
+                                <span class="contact-label">Missatge</span>
+                                <textarea name="message" rows="7" required></textarea>
+                            </label>
+                            <div class="contact-actions">
+                                <button class="contact-submit" type="submit">Enviar missatge</button>
+                            </div>
+                        </form>
+                    </article>
+
+                    <article class="contact-card contact-card-faq">
+                        <h2 class="contact-title">Abans d’enviar</h2>
+                        <ul class="contact-faq" aria-label="Informació útil">
+                            <li>
+                                <span class="contact-faq-title">Temps de resposta</span>
+                                <span class="contact-faq-text">Normalment responem en menys de 24–48 hores
+                                    laborables.</span>
+                            </li>
+                            <li>
+                                <span class="contact-faq-title">Col·laboracions</span>
+                                <span class="contact-faq-text">Si tens una proposta, indica l’objectiu i l’enllaç al
+                                    projecte.</span>
+                            </li>
+                            <li>
+                                <span class="contact-faq-title">Errors del web</span>
+                                <span class="contact-faq-text">Adjunta captura i el navegador/versió per reproduir-ho
+                                    ràpid.</span>
+                            </li>
+                        </ul>
+                    </article>
+                </section>
+
+                <aside class="col-5 md-col-12 sm-col-12">
+                    <article class="contact-card contact-card-info">
+                        <h2 class="contact-title">Info</h2>
+                        <ul class="contact-info" aria-label="Informació de contacte">
+                            <li><i class="fas fa-envelope" aria-hidden="true"></i><a
+                                    href="mailto:hans.laom@educem.net">hans.laom@educem.net</a></li>
+                            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Barcelona,
+                                    Catalunya</span></li>
+                            <li><i class="fas fa-clock" aria-hidden="true"></i><span>Dilluns a divendres ·
+                                    9:00–18:00</span></li>
+                        </ul>
+
+                        <div class="contact-divider"></div>
+
+                        <h3 class="contact-subtitle">Xarxes</h3>
+                        <div class="contact-socials" aria-label="Xarxes socials">
+                            <a class="contact-social" href="#" aria-label="Instagram"><i class="fab fa-instagram"
+                                    aria-hidden="true"></i></a>
+                            <a class="contact-social" href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"
+                                    aria-hidden="true"></i></a>
+                            <a class="contact-social" href="#" aria-label="TikTok"><i class="fab fa-tiktok"
+                                    aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="contact-card contact-card-map" aria-label="Ubicació">
+                        <h2 class="contact-title"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Ubicació</h2>
+                        <p class="contact-lead">Som a Barcelona. Si vols quedar, escriu-nos i acordem dia/hora.</p>
+                        <div class="contact-map" role="img" aria-label="Mapa de Barcelona">
+                            <iframe 
+                                class="contact-map-iframe" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1354.353886710397!2d2.1349618199746225!3d41.39103871762647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4987aa920a29f%3A0x18cb538307bd863!2sAlta%20Diagonal!5e1!3m2!1sca!2ses!4v1772526779847!5m2!1sca!2ses"
+                                style="border:0;" 
+                                allowfullscreen 
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </article>
+                </aside>
+            </div>
+        </div>
     </main>
+
     <footer>
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi
     </footer>
+
+    <script type="module" src="./../js/nav-auth.js"></script>
 </body>
 
 </html>

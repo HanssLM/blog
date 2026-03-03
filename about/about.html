@@ -8,10 +8,12 @@
     <meta name="description" content="Plantilla HTML v1.0" />
     <meta name="author" content="Hans Lao Moncusi" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="./../LAYOUT/structure/columns.css" />
     <link rel="stylesheet" href="./../LAYOUT/structure/height.css" />
-    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./../css/base.css" />
     <link rel="stylesheet" href="./css/about.css" />
 </head>
 
@@ -28,20 +30,25 @@
         </header>
         <nav>
             <ul class="barra-nav">
-                <li>
-                    <a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Home</a>
-                </li>
-                <li>
-                    <a href="./../posts/posts.html"><i class="fas fa-newspaper"></i>&nbsp;Posts</a>
-                </li>
-                <li>
-                    <a href="./../contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contact</a>
-                </li>
-                <li>
-                    <a href="./../login/login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
-                </li>
-                <li>
-                    <a href="./../register/register.html"><i class="fas fa-user-plus"></i>&nbsp;Register</a>
+                <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
+                <li><a href="./../posts/posts.html?mock=1"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
+                <li><a href="./../about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre mi</a></li>
+                <li><a href="./../contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contacte</a></li>
+                <li class="nav-auth" aria-label="Compte">
+                    <div id="navAuthChip" class="nav-auth-chip">
+                        <span id="navAuthAvatar" class="nav-auth-avatar" aria-hidden="true">
+                            <i id="navAvatarFallback" class="fas fa-user-circle" aria-hidden="true"></i>
+                        </span>
+                        <button id="navAuthLogged" class="nav-auth-name" type="button" hidden></button>
+                        <span id="navAuthGuest" class="nav-auth-guest">
+                            <a class="nav-auth-link" href="./../login/login.html">Iniciar sessió</a>
+                            <span class="nav-auth-sep">|</span>
+                            <a class="nav-auth-link" href="./../register/register.html">Registrarse</a>
+                        </span>
+                        <div id="navAuthMenu" class="nav-auth-menu" role="menu" aria-label="Compte" hidden>
+                            <button id="btnNavLogout" class="nav-auth-menu-item" type="button" role="menuitem">Tancar sessió</button>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -301,6 +308,8 @@
     <footer>
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi
     </footer>
+
+    <script type="module" src="./../js/nav-auth.js"></script>
 </body>
 
 </html>
