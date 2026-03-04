@@ -40,19 +40,71 @@ i.fab.fa-twitter {
 }
 
 @media (min-width: 48.001em) {
+    /* Grid layouts */
     .about-grid.about-grid-split.row {
         align-items: stretch;
     }
-
+    
     .about-grid.about-grid-split.row > section {
         display: flex;
         flex-direction: column;
         min-height: 0;
     }
-
-    .about-grid.about-grid-split.row > section > .about-card {
+    
+    .about-grid-hero.row {
+        align-items: stretch;
+    }
+    
+    .about-grid-hero.row > section,
+    .about-grid-hero.row > aside {
+        align-self: stretch;
+        min-height: 0;
+    }
+    
+    .about-grid-hero.row > section {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .about-grid-hero.row > section > .about-card-hero {
+        flex: 1;
+        min-height: 400px !important;
+    }
+    
+    .about-grid-hero.row > aside {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+    
+    .about-grid-hero.row > aside > .about-stack {
         flex: 1;
         min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Card padding */
+    .about-card {
+        padding: 1.5rem;
+    }
+    
+    /* Card heights */
+    html body div.container div.about-grid.about-grid-split.row section.col-6.md-col-6.sm-col-12 article.about-card,
+    html body div.container div.about-grid.about-grid-split.row section.col-12.md-col-12.sm-col-12 article.about-card {
+        min-height: 280px !important;
+        padding-bottom: 2em !important;
+        flex: 1 !important;
+    }
+    
+    html body div.container div.about-grid.about-grid-hero.row aside.col-4.md-col-12.sm-col-12 div.about-stack article.about-card:first-child {
+        min-height: 280px !important;
+        padding-bottom: 2em !important;
+    }
+    
+    html body div.container div.about-grid.about-grid-hero.row aside.col-4.md-col-12.sm-col-12 div.about-stack article.about-card:last-child {
+        min-height: 200px !important;
+        padding-bottom: .85rem !important;
     }
 }
 
@@ -63,46 +115,6 @@ i.fab.fa-twitter {
 
     .about-grid.about-grid-split.row > section {
         grid-column: auto !important;
-    }
-}
-
-@media (min-width: 48.001em) {
-    .about-grid-hero.row {
-        align-items: stretch;
-    }
-
-    .about-grid-hero.row > section,
-    .about-grid-hero.row > aside {
-        align-self: stretch;
-        min-height: 0;
-    }
-
-    .about-grid-hero.row > section {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .about-grid-hero.row > section > .about-card-hero {
-        flex: 1;
-        min-height: 0;
-    }
-
-    .about-grid-hero.row > aside {
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
-    }
-
-    .about-grid-hero.row > aside > .about-stack {
-        flex: 1;
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .about-grid-hero.row > aside > .about-stack > .about-card {
-        flex: 1;
-        min-height: 0;
     }
 }
 
@@ -352,11 +364,17 @@ i.fab.fa-twitter {
     }
 
     .about-avatar {
-        width: 84px;
-        height: 84px;
+        width: 80px;
+        height: 80px;
     }
 
     .about-highlights {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 29.25em) {
+    .about-highlights.about-highlights-secondary {
         grid-template-columns: 1fr;
     }
 }
