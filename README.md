@@ -20,9 +20,7 @@
 
 ---
 
-### 🖼️ Captures de Pantalla
 
-### Pàgina Principal
 ```
 ┌─────────────────────────────────────┐
 │           TechInPulse               │
@@ -155,23 +153,25 @@ blog/
 ### 👥 Autors i Contribucions
 
 ### 🧑‍💻 Autor Principal
-- **Hans L.** - Desenvolupador principal i creador del projecte
+- **Hans Lao Moncusi** - Desenvolupador principal i creador del projecte
   - Contacte: A través del formulari de contacte del blog
   - GitHub: [@HanssLM](https://github.com/HanssLM)
+  - Linkedin: [@Hans Lao Moncusi](https://www.linkedin.com/in/hanslaomoncusi/)
 
 ### 🤝 Contribucions
 Les contribucions són benvingudes! Si vols col·laborar en el projecte:
+***
 
 1. **Fork** el repositori
 2. Crea una branca per a la teva funcionalitat (`git checkout -b feature/NovaFuncionalitat`)
 3. **Commit** els teus canvis (`git commit -m 'Afegint nova funcionalitat'`)
 4. **Push** a la branca (`git push origin feature/NovaFuncionalitat`)
 5. Obre un **Pull Request**
-
+   
+***
 ---
 
 ### 📄 Llicència
-
 Aquest projecte està sota la llicència **MIT License** - pots veure el fitxer [LICENSE](LICENSE) per a més detalls.
 
 ```
@@ -219,20 +219,10 @@ copies or substantial portions of the Software.
 
 ### 🔗 Enllaços d'Interès
 
-- Demo en viu: [https://techinpulse.firebaseapp.com](https://techinpulse.firebaseapp.com)
 - Documentació de Firebase: [https://firebase.google.com/docs](https://firebase.google.com/docs)
 - Font Awesome: [https://fontawesome.com](https://fontawesome.com)
 - Firebase Hosting: [https://firebase.google.com/products/hosting](https://firebase.google.com/products/hosting)
-
----
-
-### 📊 Mètriques del Projecte
-
-- Total d'articles: En desenvolupament
-- Usuaris registrats: Sistema actiu
-- Estrelles GitHub: [Afegeix la teva estrella!](https://github.com/HanssLM/blog)
-- Forks: [Col·labora al projecte](https://github.com/HanssLM/blog/fork)
-
+  
 ---
 
 ### 💬 Feedback i Suport
