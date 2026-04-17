@@ -44,12 +44,26 @@
                         </span>
                         <button id="navAuthLogged" class="nav-auth-name" type="button" hidden></button>
                         <span id="navAuthGuest" class="nav-auth-guest">
-                            <a class="nav-auth-link" href="./../login/login.html">Iniciar sessió</a>
+                            <button class="nav-auth-link" type="button" onclick="window.location.href='./../login/login.html'">Iniciar sessió</button>
                             <span class="nav-auth-sep">|</span>
-                            <a class="nav-auth-link" href="./../register/register.html">Registrarse</a>
+                            <button class="nav-auth-link" type="button" onclick="window.location.href='./../register/register.html'">Registrarse</button>
                         </span>
                         <div id="navAuthMenu" class="nav-auth-menu" role="menu" aria-label="Compte" hidden>
-                            <button id="btnNavLogout" class="nav-auth-menu-item" type="button" role="menuitem">Tancar sessió</button>
+                            <button class="nav-auth-menu-item" type="button" role="menuitem" onclick="window.location.href='../profile/profile.html'">
+                                <i class="fa fa-user"></i>&nbsp;Perfil
+                            </button>
+                            <button class="nav-auth-menu-item" type="button" role="menuitem" onclick="window.location.href='../settings/settings.html'">
+                                <i class="fa fa-cog"></i>&nbsp;Configuració
+                            </button>
+                            <button class="nav-auth-menu-item" type="button" role="menuitem" onclick="window.location.href='../posts/my-posts.html'">
+                                <i class="fa fa-newspaper"></i>&nbsp;Els meus posts
+                            </button>
+                            <button class="nav-auth-menu-item" type="button" role="menuitem" onclick="window.location.href='../help/help.html'">
+                                <i class="fa fa-question-circle"></i>&nbsp;Ajuda
+                            </button>
+                            <button id="btnNavLogout" class="nav-auth-menu-item" type="button" role="menuitem">
+                                <i class="fa fa-sign-out"></i>&nbsp;Tancar sessió
+                            </button>
                         </div>
                     </div>
                 </li>

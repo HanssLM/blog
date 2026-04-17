@@ -11,10 +11,12 @@
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./../css/base.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
+    <div class="hero-top hero-surface">
     <header class="blog-hero">
         <div class="hero-inner">
             <p class="hero-kicker">ARTICLE</p>
@@ -23,16 +25,45 @@
         </div>
     </header>
 
-    <nav class="nav-principal" aria-label="Navegación principal">
-        <ul class="nav-lista">
-            <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
-            <li><a href="./../posts/posts.html" aria-current="page"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
-            <li><a href="./../about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre Nosaltres</a></li>
-            <li><a href="./../contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contacte</a></li>
-            <li><a href="./../login/login.html"><i class="fas fa-sign-in-alt"></i>&nbsp;Accedir</a></li>
-            <li><a href="./../register/register.html"><i class="fas fa-user-plus"></i>&nbsp;Registre</a></li>
-        </ul>
-    </nav>
+    <nav>
+            <ul class="barra-nav">
+                <li><a href="./../index.html"><i class="fas fa-home"></i>&nbsp;Inici</a></li>
+                <li><a href="./../posts/posts.html"><i class="fas fa-newspaper"></i>&nbsp;Articles</a></li>
+                <li><a href="./../about/about.html"><i class="fas fa-users"></i>&nbsp;Sobre mi</a></li>
+                <li><a href="./../contact/contact.html"><i class="fas fa-envelope"></i>&nbsp;Contacte</a></li>
+                <li class="nav-auth" aria-label="Compte">
+                    <div id="navAuthChip" class="nav-auth-chip">
+                        <span id="navAuthAvatar" class="nav-auth-avatar" aria-hidden="true">
+                            <i id="navAvatarFallback" class="fas fa-user-circle" aria-hidden="true"></i>
+                        </span>
+                        <button id="navAuthLogged" class="nav-auth-name" type="button" hidden></button>
+                        <span id="navAuthGuest" class="nav-auth-guest">
+                            <a class="nav-auth-link" href="./../login/login.html">Iniciar sessió</a>
+                            <span class="nav-auth-sep">|</span>
+                            <a class="nav-auth-link" href="./../register/register.html">Registrarse</a>
+                        </span>
+                        <div id="navAuthMenu" class="nav-auth-menu" role="menu" aria-label="Compte" hidden>
+                            <a href="../profile/profile.html" class="nav-auth-menu-item" role="menuitem">
+                                <i class="fas fa-user"></i>&nbsp;Perfil
+                            </a>
+                            <a href="../settings/settings.html" class="nav-auth-menu-item" role="menuitem">
+                                <i class="fas fa-cog"></i>&nbsp;Configuració
+                            </a>
+                            <a href="my-posts.html" class="nav-auth-menu-item" role="menuitem">
+                                <i class="fas fa-newspaper"></i>&nbsp;Els meus posts
+                            </a>
+                            <a href="../help/help.html" class="nav-auth-menu-item" role="menuitem">
+                                <i class="fas fa-question-circle"></i>&nbsp;Ajuda
+                            </a>
+                            <button id="btnNavLogout" class="nav-auth-menu-item" type="button" role="menuitem">
+                                <i class="fas fa-sign-out-alt"></i>&nbsp;Tancar sessió
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
     <main>
         <div class="posts-contenedor">
@@ -49,6 +80,7 @@
         &copy; 2025 Educem SMX 1A · Página creada por Hans Lao Moncusi
     </footer>
 
+    <script type="module" src="./../js/nav-auth.js"></script>
     <script type="module" src="./js/post.js"></script>
 </body>
 
