@@ -49,13 +49,13 @@
 - **JavaScript** - Interactivitat i funcionalitats dinàmiques 💻
 - **Font Awesome** - Icones i elements visuals 📈
 
-### Backend i Serveis
+### Serveis
 - **Firebase 12.9.0** - Backend com a servei 🌐
   - **Firebase Authentication** - Gestió d'usuaris 🔒
   - **Firebase Firestore** - Base de dades NoSQL 📊
   - **Firebase Hosting** - Allotjament web 📈
 
-### Eines de Desenvolupament
+### Eines ⚙️ 
 - **Visual Studio Code** - Entorn de desenvolupament 💻
 - **Git** - Control de versions 📈
 - **Firebase CLI** - Desplegament i gestió 🔧
