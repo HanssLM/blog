@@ -43,14 +43,22 @@
 
 ### 🛠️ Tecnologías Utilitzades
 
+![Editor](https://img.shields.io/badge/Windsurf-supported-09B6A2?logo=codeium&logoColor=white)
+![HTML](https://img.shields.io/badge/HTML-5-orange?style=for-the-badge)
+![CSS](https://img.shields.io/badge/CSS-3-blueviolet?style=for-the-badge)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge)
+![GitHub](https://img.shields.io/badge/Platform-GitHub-lightgrey?style=for-the-badge)
+![Firebase](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)
+
+
 ### Frontend
-- **HTML5** - Estructura semàntica del lloc web 📄
+- **HTML5** - Estructura del lloc web 📄
 - **CSS3** - Estils i disseny responsive 🎨
-- **JavaScript** - Interactivitat i funcionalitats dinàmiques 💻
-- **Font Awesome** - Icones i elements visuals 📈
+- **JavaScript** - Interactivitat 💻
+- **Font Awesome** - Icones  visuals 📈
 
 ### Serveis
-- **Firebase 12.9.0** - Backend com a servei 🌐
+- **Firebase 12.9.0** -Gestor web 🌐
   - **Firebase Authentication** - Gestió d'usuaris 🔒
   - **Firebase Firestore** - Base de dades NoSQL 📊
   - **Firebase Hosting** - Allotjament web 📈
