@@ -43,7 +43,7 @@
 
 ### 🛠️ Tecnologías Utilitzades
 
-![Editor](https://img.shields.io/badge/Windsurf-supported-09B6A2?logo=codeium&logoColor=white)
+![Editor](https://img.shields.io/badge/Editor-Visual%20Studio%20Code-blue?style=for-the-badge)
 ![HTML](https://img.shields.io/badge/HTML-5-orange?style=for-the-badge)
 ![CSS](https://img.shields.io/badge/CSS-3-blueviolet?style=for-the-badge)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge)
